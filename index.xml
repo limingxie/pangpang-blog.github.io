@@ -2,22 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PangPang - Blog</title>
-    <link>https://limingxie.github.io/</link>
+    <link>https://pangpang-blog.github.io/</link>
     <description>Recent content on PangPang - Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>北京衣念科技发展有限公司 PangPang-Blog</copyright>
-    <lastBuildDate>Wed, 14 Mar 2018 10:14:08 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Mar 2018 18:23:09 +0800</lastBuildDate>
     
-	<atom:link href="https://limingxie.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pangpang-blog.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Dooray &amp; GitLab 关联设置</title>
+      <link>https://pangpang-blog.github.io/liche/doorayandgitlabsetting/</link>
+      <pubDate>Tue, 20 Mar 2018 18:23:09 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/liche/doorayandgitlabsetting/</guid>
+      <description>Dooray是一个与其它所有工具连接，且简单易懂的业务工具。
+GitLab是代码托管的工具（公司自己创建了GitLab网站）。
+Dooray也是一个聊天工具，有客户端和web端
+​ -web端地址：https://dooray.com/messenger/orgs
+​ -客户端下载地址：https://dooray.com
+ 注册Dooray,GitLab,（Dooray推荐下载载客户端）  ​
+ 登陆Dooray账户，并创建业务群。   登陆https://pangpang.dooray.com 网站,点击右上脚的纸轮-&amp;gt;设置-&amp;gt;联动服务。  ​
+ 点击添加服务-&amp;gt;选择GitLab添加服务。   选择要关联的项目和群，复制URL地址，下一步再Gitlab设置中用到。   登陆GitLab并创建项目，点击settings-&amp;gt;Integrations，填写上面复制的URL，勾选需要的Trigger，并保存。   点击test测试。   Dooray客户端接收到消息，到这一步就配置成功了～。   当你你通过git，push，merge等操作时，Dooray messenger会把信息发给群，群用户可以看到响应信息。  ​
+## 代码commit 时输入语句
+ push commit时message内容输入fix#my-dooray-project/1234 ，my-dooray-project业务的序号1234中会记录push内容。
+ 除了fix还可以用以下的单词。
+   해결, 완료, fix,fixed, close, closes, closed ressolve, resolves, resolved   Dooray的业务内容中所记录内容如下。  </description>
+    </item>
+    
+    <item>
+      <title>Go项目的测试代码</title>
+      <link>https://pangpang-blog.github.io/limingxie/my_go_test/</link>
+      <pubDate>Thu, 15 Mar 2018 20:36:02 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/limingxie/my_go_test/</guid>
+      <description>说明为什么写测试代码？ 怎么写测试代码？ 的文章很多，这里就不多说了。
+直接来点干货，看代码。
+// add_test.go package models import ( &amp;quot;testing&amp;quot; ) func TestAdd(t *testing.T) { //arrange var x, y, res int x = 2 y = 3 //act res = Add(x, y) //assert if res != 5 { t.Fatal(&amp;quot;Add的结果不正确&amp;quot;) } }  // add.go package models func Add(x, y int) int { return x + y }  为了看结果需要运行以下命令。
+$ go test -v === RUN TestAdd --- PASS: TestAdd (0.</description>
+    </item>
+    
+    <item>
       <title>用hugo搭建个人博客</title>
-      <link>https://limingxie.github.io/limingxie/hugo_create/</link>
+      <link>https://pangpang-blog.github.io/limingxie/hugo_create/</link>
       <pubDate>Wed, 14 Mar 2018 10:14:08 +0800</pubDate>
       
-      <guid>https://limingxie.github.io/limingxie/hugo_create/</guid>
+      <guid>https://pangpang-blog.github.io/limingxie/hugo_create/</guid>
       <description>这几天研究了用hugo搭建个人博客。
 简单的整理了一下。
 1.安装hugo（windows 请查看官网介绍 https://gohugo.io/getting-started/installing/）
@@ -28,10 +60,10 @@ $ hugo new site my-blog Congratulations! Your new Hugo site is created in /Users
     
     <item>
       <title>通过1000个代码重构，学习到的知识点</title>
-      <link>https://limingxie.github.io/liche/1000codereviews/</link>
+      <link>https://pangpang-blog.github.io/liche/1000codereviews/</link>
       <pubDate>Fri, 09 Mar 2018 18:25:31 +0800</pubDate>
       
-      <guid>https://limingxie.github.io/liche/1000codereviews/</guid>
+      <guid>https://pangpang-blog.github.io/liche/1000codereviews/</guid>
       <description>通过1000个代码重构，学习到的知识点 (What I learned from doing 1000 code reviews)(翻译) 在LinkedIn工作的时候，我大部分的工作都是做代码检查。有一些建议不断地反复出现，所以我决定把我和团队分享的清单放在一起。
 建议 1: 出错时请抛（throw）出一个异常（exception）
 我看到的一个常见的模式是：
@@ -48,10 +80,10 @@ void doOperation(String opType, Data data); // where opType is &amp;quot;insert&
     
     <item>
       <title>Go My Way #2 - DataBase, Logging</title>
-      <link>https://limingxie.github.io/liche/go_my_way2/</link>
+      <link>https://pangpang-blog.github.io/liche/go_my_way2/</link>
       <pubDate>Fri, 09 Mar 2018 18:23:37 +0800</pubDate>
       
-      <guid>https://limingxie.github.io/liche/go_my_way2/</guid>
+      <guid>https://pangpang-blog.github.io/liche/go_my_way2/</guid>
       <description>Go My Way #2 - DataBase, Logging Jun 14, 2017
 Go My Way是介绍我用Go语言开发web应用时首选方案的3篇文章 . 没读过之前的文章，请下面的链接.
  Go My Way #1 - web 框架 Go My Way #2 - DataBase, Logging Go My Way #3 - Configuration, Tracing, etc. gomobile  这篇文章介绍数据库和日志
@@ -63,10 +95,10 @@ Go My Way是介绍我用Go语言开发web应用时首选方案的3篇文章 . �
     
     <item>
       <title>Go My Way #1 - web 框架</title>
-      <link>https://limingxie.github.io/liche/go_my_way1/</link>
+      <link>https://pangpang-blog.github.io/liche/go_my_way1/</link>
       <pubDate>Fri, 09 Mar 2018 18:23:09 +0800</pubDate>
       
-      <guid>https://limingxie.github.io/liche/go_my_way1/</guid>
+      <guid>https://pangpang-blog.github.io/liche/go_my_way1/</guid>
       <description>Go My Way #1 - web 框架 Jun 12, 2017
 Ruby的Ruby on Rails，Java的Spring，Python的Django,Nodejs的Express。多数有人气的语言都有主流的web框架。所以不需要多想使用主流框架就可以以，但是Go没有这些。Go提倡根据情况合理的组合package。熟练了以后非常方便，但对于第一次接触Go的人选择package是困难的事情。
 接触Go已有3年，过去1年中积极使用了Go语言。起初公司内只有自己使用Go，现在使用Go开发的同事多了起来。我们公司在中国提供it服务，目前阿里云里运营着5个linux服务器和2个windows服务器。共有50左右的服务，其中用Go开发的服务占10个左右。
@@ -90,10 +122,10 @@ Go有许多web框架，但功能大同小异。大部分会提供一下的功能
     
     <item>
       <title>Go项目中编写测试代码的经验</title>
-      <link>https://limingxie.github.io/limingxie/go_test/</link>
+      <link>https://pangpang-blog.github.io/limingxie/go_test/</link>
       <pubDate>Fri, 09 Mar 2018 18:14:08 +0800</pubDate>
       
-      <guid>https://limingxie.github.io/limingxie/go_test/</guid>
+      <guid>https://pangpang-blog.github.io/limingxie/go_test/</guid>
       <description>http://sabzil.org/writing-a-unit-test/
 http://10.202.101.25:8090/pages/viewpage.action?pageId=12551088
 备注：以下内容是我在学习过程所整理的内容，所以有些内容有可能不是正确。

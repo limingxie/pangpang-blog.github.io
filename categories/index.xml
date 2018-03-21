@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on PangPang - Blog</title>
-    <link>https://limingxie.github.io/categories/</link>
+    <link>https://pangpang-blog.github.io/categories/</link>
     <description>Recent content in Categories on PangPang - Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>北京衣念科技发展有限公司 PangPang-Blog</copyright>
     
-	<atom:link href="https://limingxie.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pangpang-blog.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

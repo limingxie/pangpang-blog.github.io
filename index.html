@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#hexcolor" />
  
   <meta property="og:site_name" content="PangPang - Blog" />
-  <meta property="og:url" content="https://limingxie.github.io/" />
+  <meta property="og:url" content="https://pangpang-blog.github.io/" />
   
   
   <meta property="og:type" content="website" />
@@ -18,21 +18,21 @@
      PangPang - Blog
   </title>
 
-  <link rel="stylesheet" href="https://limingxie.github.io/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://limingxie.github.io/css/main.css" />
-  <link rel="stylesheet" href="https://limingxie.github.io/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://limingxie.github.io/css/github.css" />
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
-  <link rel="shortcut icon" href="https://limingxie.github.io/images/favicon.ico" />
-  <link rel="apple-touch-icon" href="https://limingxie.github.io/images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/github.css" />
   
-  <link href="https://limingxie.github.io/index.xml" rel="alternate" type="application/rss+xml" title="PangPang - Blog" />
+  <link rel="shortcut icon" href="https://pangpang-blog.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://pangpang-blog.github.io/images/apple-touch-icon.png" />
+  
+  <link href="https://pangpang-blog.github.io/index.xml" rel="alternate" type="application/rss+xml" title="PangPang - Blog" />
   
 </head>
 <body>
     <header class="global-header"  style="background-image:url( /images/bg.jpg )">
     <section class="header-text">
-      <h1><a href="https://limingxie.github.io/">PangPang - Blog</a></h1>
+      <h1><a href="https://pangpang-blog.github.io/">PangPang - Blog</a></h1>
       
       <div class="sns-links hidden-print">
   
@@ -55,7 +55,7 @@
 
       
       
-      <a href="https://limingxie.github.io/index.xml" class="btn-header btn-subscribe hidden-xs">
+      <a href="https://pangpang-blog.github.io/index.xml" class="btn-header btn-subscribe hidden-xs">
         <i class="fa fa-rss" aria-hidden="true"></i>
         &nbsp;Subscribe
       </a>
@@ -69,7 +69,71 @@
   
   <article>
   <header>
-    <h2><a href="https://limingxie.github.io/limingxie/hugo_create/">用hugo搭建个人博客</a></h2>
+    <h2><a href="https://pangpang-blog.github.io/liche/doorayandgitlabsetting/">Dooray &amp; GitLab 关联设置</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-03-20T18:23:09&#43;08:00">
+          Mar 20, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    Dooray是一个与其它所有工具连接，且简单易懂的业务工具。
+GitLab是代码托管的工具（公司自己创建了GitLab网站）。
+Dooray也是一个聊天工具，有客户端和web端
+​ -web端地址：https://dooray.com/messenger/orgs
+​ -客户端下载地址：https://dooray.com
+ 注册Dooray,GitLab,（Dooray推荐下载载客户端）  ​
+ 登陆Dooray账户，并创建业务群。   登陆https://pangpang.dooray.com 网站,点击右上脚的纸轮-&gt;设置-&gt;联动服务。  ​
+ 点击添加服务-&gt;选择GitLab添加服务。   选择要关联的项目和群，复制URL地址，下一步再Gitlab设置中用到。   登陆GitLab并创建项目，点击settings-&gt;Integrations，填写上面复制的URL，勾选需要的Trigger，并保存。   点击test测试。   Dooray客户端接收到消息，到这一步就配置成功了～。   当你你通过git，push，merge等操作时，Dooray messenger会把信息发给群，群用户可以看到响应信息。  ​
+## 代码commit 时输入语句
+ push commit时message内容输入fix#my-dooray-project/1234 ，my-dooray-project业务的序号1234中会记录push内容。
+ 除了fix还可以用以下的单词。
+   해결, 완료, fix,fixed, close, closes, closed ressolve, resolves, resolved   Dooray的业务内容中所记录内容如下。  
+  </div>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://pangpang-blog.github.io/limingxie/my_go_test/">Go项目的测试代码</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-03-15T20:36:02&#43;08:00">
+          Mar 15, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    说明为什么写测试代码？ 怎么写测试代码？ 的文章很多，这里就不多说了。
+直接来点干货，看代码。
+// add_test.go package models import ( &quot;testing&quot; ) func TestAdd(t *testing.T) { //arrange var x, y, res int x = 2 y = 3 //act res = Add(x, y) //assert if res != 5 { t.Fatal(&quot;Add的结果不正确&quot;) } }  // add.go package models func Add(x, y int) int { return x + y }  为了看结果需要运行以下命令。
+$ go test -v === RUN TestAdd --- PASS: TestAdd (0.
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/my_go_test/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
+    <h2><a href="https://pangpang-blog.github.io/limingxie/hugo_create/">用hugo搭建个人博客</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
@@ -90,7 +154,7 @@ $ hugo new site my-blog Congratulations! Your new Hugo site is created in /Users
   
   <footer>
     <ul class="pager">
-      <li class="next"><a href="https://limingxie.github.io/limingxie/hugo_create/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/hugo_create/">Read more <span aria-hidden="true">&raquo;</span></a></li>
     </ul>
   </footer>
   
@@ -102,7 +166,7 @@ $ hugo new site my-blog Congratulations! Your new Hugo site is created in /Users
   
   <article>
   <header>
-    <h2><a href="https://limingxie.github.io/liche/1000codereviews/">通过1000个代码重构，学习到的知识点</a></h2>
+    <h2><a href="https://pangpang-blog.github.io/liche/1000codereviews/">通过1000个代码重构，学习到的知识点</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
@@ -129,7 +193,7 @@ void doOperation(String opType, Data data); // where opType is &quot;insert&quot
   
   <footer>
     <ul class="pager">
-      <li class="next"><a href="https://limingxie.github.io/liche/1000codereviews/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+      <li class="next"><a href="https://pangpang-blog.github.io/liche/1000codereviews/">Read more <span aria-hidden="true">&raquo;</span></a></li>
     </ul>
   </footer>
   
@@ -141,7 +205,7 @@ void doOperation(String opType, Data data); // where opType is &quot;insert&quot
   
   <article>
   <header>
-    <h2><a href="https://limingxie.github.io/liche/go_my_way2/">Go My Way #2 - DataBase, Logging</a></h2>
+    <h2><a href="https://pangpang-blog.github.io/liche/go_my_way2/">Go My Way #2 - DataBase, Logging</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
@@ -163,7 +227,7 @@ Go My Way是介绍我用Go语言开发web应用时首选方案的3篇文章 . �
   
   <footer>
     <ul class="pager">
-      <li class="next"><a href="https://limingxie.github.io/liche/go_my_way2/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+      <li class="next"><a href="https://pangpang-blog.github.io/liche/go_my_way2/">Read more <span aria-hidden="true">&raquo;</span></a></li>
     </ul>
   </footer>
   
@@ -175,7 +239,7 @@ Go My Way是介绍我用Go语言开发web应用时首选方案的3篇文章 . �
   
   <article>
   <header>
-    <h2><a href="https://limingxie.github.io/liche/go_my_way1/">Go My Way #1 - web 框架</a></h2>
+    <h2><a href="https://pangpang-blog.github.io/liche/go_my_way1/">Go My Way #1 - web 框架</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
@@ -209,7 +273,7 @@ Go有许多web框架，但功能大同小异。大部分会提供一下的功能
   
   <footer>
     <ul class="pager">
-      <li class="next"><a href="https://limingxie.github.io/liche/go_my_way1/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+      <li class="next"><a href="https://pangpang-blog.github.io/liche/go_my_way1/">Read more <span aria-hidden="true">&raquo;</span></a></li>
     </ul>
   </footer>
   
@@ -221,7 +285,7 @@ Go有许多web框架，但功能大同小异。大部分会提供一下的功能
   
   <article>
   <header>
-    <h2><a href="https://limingxie.github.io/limingxie/go_test/">Go项目中编写测试代码的经验</a></h2>
+    <h2><a href="https://pangpang-blog.github.io/limingxie/go_test/">Go项目中编写测试代码的经验</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
@@ -249,7 +313,7 @@ goconvey是我们运行 goconvey会展示以下内容，让我们一眼能看出
   
   <footer>
     <ul class="pager">
-      <li class="next"><a href="https://limingxie.github.io/limingxie/go_test/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/go_test/">Read more <span aria-hidden="true">&raquo;</span></a></li>
     </ul>
   </footer>
   
@@ -290,18 +354,9 @@ goconvey是我们运行 goconvey会展示以下内容，让我们一眼能看出
 
   </footer>
 
-  <script src="https://limingxie.github.io/js/highlight.pack.js"></script>
+  <script src="https://pangpang-blog.github.io/js/highlight.pack.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
-  </script>
-  
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'Your Google Analytics tracking id', 'auto');
-    ga('send', 'pageview');
   </script>
   
   
