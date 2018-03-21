@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Liches on PangPang - Blog</title>
+    <link>https://pangpang-blog.github.io/liche/</link>
+    <description>Recent content in Liches on PangPang - Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>北京衣念科技发展有限公司 PangPang-Blog</copyright>
+    <lastBuildDate>Tue, 20 Mar 2018 18:23:09 +0800</lastBuildDate>
+    
+	<atom:link href="https://pangpang-blog.github.io/liche/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dooray &amp; GitLab 关联设置</title>
+      <link>https://pangpang-blog.github.io/liche/doorayandgitlabsetting/</link>
+      <pubDate>Tue, 20 Mar 2018 18:23:09 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/liche/doorayandgitlabsetting/</guid>
+      <description>Dooray是一个与其它所有工具连接，且简单易懂的业务工具。
+GitLab是代码托管的工具（公司自己创建了GitLab网站）。
+Dooray也是一个聊天工具，有客户端和web端
+​ -web端地址：https://dooray.com/messenger/orgs
+​ -客户端下载地址：https://dooray.com
+ 注册Dooray,GitLab,（Dooray推荐下载载客户端）  ​
+ 登陆Dooray账户，并创建业务群。   登陆https://pangpang.dooray.com 网站,点击右上脚的纸轮-&amp;gt;设置-&amp;gt;联动服务。  ​
+ 点击添加服务-&amp;gt;选择GitLab添加服务。   选择要关联的项目和群，复制URL地址，下一步再Gitlab设置中用到。   登陆GitLab并创建项目，点击settings-&amp;gt;Integrations，填写上面复制的URL，勾选需要的Trigger，并保存。   点击test测试。   Dooray客户端接收到消息，到这一步就配置成功了～。   当你你通过git，push，merge等操作时，Dooray messenger会把信息发给群，群用户可以看到响应信息。  ​
+## 代码commit 时输入语句
+ push commit时message内容输入fix#my-dooray-project/1234 ，my-dooray-project业务的序号1234中会记录push内容。
+ 除了fix还可以用以下的单词。
+   해결, 완료, fix,fixed, close, closes, closed ressolve, resolves, resolved   Dooray的业务内容中所记录内容如下。  </description>
+    </item>
+    
+    <item>
+      <title>通过1000个代码重构，学习到的知识点</title>
+      <link>https://pangpang-blog.github.io/liche/1000codereviews/</link>
+      <pubDate>Fri, 09 Mar 2018 18:25:31 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/liche/1000codereviews/</guid>
+      <description>通过1000个代码重构，学习到的知识点 (What I learned from doing 1000 code reviews)(翻译) 在LinkedIn工作的时候，我大部分的工作都是做代码检查。有一些建议不断地反复出现，所以我决定把我和团队分享的清单放在一起。
+建议 1: 出错时请抛（throw）出一个异常（exception）
+我看到的一个常见的模式是：
+List&amp;lt;String&amp;gt; getSearchResults(...) { try { List&amp;lt;String&amp;gt; results = // make REST call to search service return results; } catch (RemoteInvocationException e) { return Collections.emptyList(); } }  这种模式实际上造成了我开发过的移动应用程序的中断。
+我们使用的搜索后端开始抛出异常。然而，应用程序的API服务器有一些类似于上面的代码。因此，从应用程序的角度来看，它获得了200的成功响应，并愉快地显示了空列表。
+相反，如果API抛出了一个异常，那么我们的监控系统就会立即将其提取出来，并修复。
+很多时候，当你遇到异常时，为了便利返回空对象。在java中空对象的例子是Optional.empty()，null,empty list。在解析URL时总是出现这样的问题。如果无法从字符串中解析URL，返回值为null。可以自问：“为什么URL是错误的？”我们应该在上游解决的数据问题吗？“
+空对象不是处理这项工作的合适工具。如果发生异常，则应抛出异常。
+建议2：尽可能使用具体的类型(type)
+这个建议基本上跟stringly typed programming（强类型编程）是相反的。
+我经常看到类似这些例子的代码。
+void doOperation(String opType, Data data); // where opType is &amp;quot;insert&amp;quot;, &amp;quot;append&amp;quot;, or &amp;quot;delete&amp;quot;, this should have clearly been an enum String fetchWebsite(String url); // where url is &amp;quot;https://google.</description>
+    </item>
+    
+    <item>
+      <title>Go My Way #2 - DataBase, Logging</title>
+      <link>https://pangpang-blog.github.io/liche/go_my_way2/</link>
+      <pubDate>Fri, 09 Mar 2018 18:23:37 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/liche/go_my_way2/</guid>
+      <description>Go My Way #2 - DataBase, Logging Jun 14, 2017
+Go My Way是介绍我用Go语言开发web应用时首选方案的3篇文章 . 没读过之前的文章，请下面的链接.
+ Go My Way #1 - web 框架 Go My Way #2 - DataBase, Logging Go My Way #3 - Configuration, Tracing, etc. gomobile  这篇文章介绍数据库和日志
+数据库 跟其他语言的ORM（Ruby的active record，.Net的entityframework,Java的JPA,等）相比，Go的DB相关的Package不足之处较多。但是Go社区出现了相关讨论的文章。“什么样的Go ORM 框架优秀? ”的问题(Golang which ORM is better)中，大部分人的意见是提供轻便的query mapper(执行sql语句的返回值绑定到Struct)功能就足够。也有推荐用native query(sql 语句，或者转化成sql语句)开发的文章(Our Go is fine but our SQL is great)。
+根据Go社区的趋势判断，不会出现 Active Record或者 Hibernate类似的ORM框架。
+本人以前也认为操作DB时应该使用ORM，相比native query，使用ORM提供的抽象化的DSL是更明智的选择。为什么会这么想？应该用面向对象的方式开发代码，觉得用二维的方式操作表是开发水平低下的表现。
+应该分开考虑modeling和实际DB处理的方式。定义好模型，基于模型开发项目，DB的处理方式不是很重要。不管你用native query,ORM还是混合使用，找到最佳的方式最重要。一直使用Go语言开发项目，解决问题时相比理论更关注实用性(这才是Go的哲学)。关于ORM，Go社区也一定程度的同意这种观点。(不同意怎么办？想自己开发一个，实力不足，只能适应)。</description>
+    </item>
+    
+    <item>
+      <title>Go My Way #1 - web 框架</title>
+      <link>https://pangpang-blog.github.io/liche/go_my_way1/</link>
+      <pubDate>Fri, 09 Mar 2018 18:23:09 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/liche/go_my_way1/</guid>
+      <description>Go My Way #1 - web 框架 Jun 12, 2017
+Ruby的Ruby on Rails，Java的Spring，Python的Django,Nodejs的Express。多数有人气的语言都有主流的web框架。所以不需要多想使用主流框架就可以以，但是Go没有这些。Go提倡根据情况合理的组合package。熟练了以后非常方便，但对于第一次接触Go的人选择package是困难的事情。
+接触Go已有3年，过去1年中积极使用了Go语言。起初公司内只有自己使用Go，现在使用Go开发的同事多了起来。我们公司在中国提供it服务，目前阿里云里运营着5个linux服务器和2个windows服务器。共有50左右的服务，其中用Go开发的服务占10个左右。
+就这样使用Go语言开发，有了自己的开发方式。我想通过3偏文章介绍Go语言开发。（太冗长，读者没有耐心读完，自己觉得也麻烦，呵呵）
+ Go My Way #1 - web框架 Go My Way #2 - 数据库, 日志 Go My Way #3 - Configuration, Tracing, etc. gomobile  第一个主题是web框架。我觉得对这部分关注的人比较多，所以选择了它。
+但是开发web应用程序，只有web框架是不够的。保存数据需要数据库，想保存日志，想追溯处理web请求的记录。想一一解决各种问题，需要更多的选择。所以在第2章和第3章对 DB, Logging, Tracing, Vendoring, Confugration, Test等功能一一介绍。
+最后会对， gomobile 进行介绍。
+在几个大会当中有对它的介绍，但实际用Go开发移动端有诸多不便。但我们公司的服务的app中有Go package。gomobile有制约事项，但考虑好制约事项开发项目也不错。最后会介绍在移动端怎么使用Go。
+此后会用3个篇幅介绍开发web应用程序的方法。没有绝对正确的方式，Go也不提倡这种方式。我将介绍我们公司业务环境下对web应用程序的优化方式，环境不一样可能方式也不一样。在我们公司也有用其他方式开发项目。
+对所介绍的内容的讨论，建议，争论，质疑，等
+我将感谢任何形式的意见。
+我的思想是永远开放的. ^^
+ECHO
+先讲结论，开发web应用程序时用echo来开发。
+根据之前所说的内容开发了参考项目echosample(https://github.com/pangpanglabs/echosample)。有新的内容添加时会持续更新 echosample。开发新的服务时可以参考echosample。
+非常欢迎想一起开发echosample的同事。
+main 框架 - echo echo是没有明显缺点，只有必要的功能的轻量级框架。
+Go有许多web框架，但功能大同小异。大部分会提供一下的功能。
+ 定义路由 Query String或者Body转换成 struct.</description>
+    </item>
+    
+  </channel>
+</rss>

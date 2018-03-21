@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Limingxies on PangPang - Blog</title>
+    <link>https://pangpang-blog.github.io/limingxie/</link>
+    <description>Recent content in Limingxies on PangPang - Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>北京衣念科技发展有限公司 PangPang-Blog</copyright>
+    <lastBuildDate>Thu, 15 Mar 2018 20:36:02 +0800</lastBuildDate>
+    
+	<atom:link href="https://pangpang-blog.github.io/limingxie/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go项目的测试代码</title>
+      <link>https://pangpang-blog.github.io/limingxie/my_go_test/</link>
+      <pubDate>Thu, 15 Mar 2018 20:36:02 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/limingxie/my_go_test/</guid>
+      <description>说明为什么写测试代码？ 怎么写测试代码？ 的文章很多，这里就不多说了。
+直接来点干货，看代码。
+// add_test.go package models import ( &amp;quot;testing&amp;quot; ) func TestAdd(t *testing.T) { //arrange var x, y, res int x = 2 y = 3 //act res = Add(x, y) //assert if res != 5 { t.Fatal(&amp;quot;Add的结果不正确&amp;quot;) } }  // add.go package models func Add(x, y int) int { return x + y }  为了看结果需要运行以下命令。
+$ go test -v === RUN TestAdd --- PASS: TestAdd (0.</description>
+    </item>
+    
+    <item>
+      <title>用hugo搭建个人博客</title>
+      <link>https://pangpang-blog.github.io/limingxie/hugo_create/</link>
+      <pubDate>Wed, 14 Mar 2018 10:14:08 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/limingxie/hugo_create/</guid>
+      <description>这几天研究了用hugo搭建个人博客。
+简单的整理了一下。
+1.安装hugo（windows 请查看官网介绍 https://gohugo.io/getting-started/installing/）
+$ brew install hugo  之后检查版本
+$ hugo version Hugo Static Site Generator v0.37.1 darwin/amd64 BuildDate:  2.创建hugo 项目
+$ hugo new site my-blog Congratulations! Your new Hugo site is created in /Users/limingxie/Projects/my-blog. Just a few more steps and you&#39;re ready to go: 1. Download a theme into the same-named folder. Choose a theme from https://themes.gohugo.io/, or create your own with the &amp;quot;hugo new theme &amp;lt;THEMENAME&amp;gt;&amp;quot; command.</description>
+    </item>
+    
+    <item>
+      <title>Go项目中编写测试代码的经验</title>
+      <link>https://pangpang-blog.github.io/limingxie/go_test/</link>
+      <pubDate>Fri, 09 Mar 2018 18:14:08 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/limingxie/go_test/</guid>
+      <description>http://sabzil.org/writing-a-unit-test/
+http://10.202.101.25:8090/pages/viewpage.action?pageId=12551088
+备注：以下内容是我在学习过程所整理的内容，所以有些内容有可能不是正确。
+为什么写测试代码? 我们做项目写代码的时候，已知会有这样的疑惑和担忧。
+&amp;ldquo;我写的正确吗?&amp;rdquo; &amp;ldquo;我这么编写其他地方不会受到影响吗?&amp;rdquo;
+我们之所有这样的担忧，我认为应该是一下2种原因导致的。 第一，编写代码以后，很难构建针对开发内容发出请求和响应请求的模块。 第二，编程的时候会忘记之前的定好的原则，违反这些原则有可能会有一些错误。
+根据&amp;rdquo;测试驱动开发 TDD 实践和工具&amp;rdquo; 和 几篇博客文章以及几本书，再写测试代码的感觉能找出问题的原因。
+所以我决定在进行中的项目里适用测试代码。
+测试代码？ 写测试代码需要注意以下几点。 1. 通过 &amp;ldquo;提问 → 回答 → 优化 → 反复&amp;rdquo; 的过程，反复的编写测试代码，失败，再整理。 2. 测试的最小单位是函数，可以以函数为单位编写测试代码。 3. 设计的时候先定义行为然后在考虑行为的属性。
+怎么写测试代码? Go 语言里的测试代码可以根据官方提供的 “testing” 包编写。
+可以使用第三方工具更便捷的编写测试代码。 1. testify ( go get -u github.com/stretchr/testify ) 2. goconvey ( go get -u github.com/smartystreets/goconvey )
+testify提供和 assert, http, mock, require, suite 一样的的包，更方便的让我们做检验。goconvey是更方便的让我们在网页里确认测试结果的工具。
+goconvey是我们运行 goconvey会展示以下内容，让我们一眼能看出测试结果。 scr 1 我们可以通过 coverage 确认以下内容。 scr 2</description>
+    </item>
+    
+  </channel>
+</rss>

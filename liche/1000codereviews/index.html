@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 通过1000个代码重构，学习到的知识点 &middot;  PangPang - Blog" />
+  
+  <meta name="theme-color" content="#hexcolor" />
+ 
+  <meta property="og:site_name" content="PangPang - Blog" />
+  <meta property="og:url" content="https://pangpang-blog.github.io/liche/1000codereviews/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2018-03-09T18:25:31&#43;08:00" />
+  
+  
+
+  <title>
+     通过1000个代码重构，学习到的知识点 &middot;  PangPang - Blog
+  </title>
+
+  <link rel="stylesheet" href="https://pangpang-blog.github.iocss/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.iocss/main.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.iocss/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.iocss/github.css" />
+  
+  <link rel="shortcut icon" href="https://pangpang-blog.github.ioimages/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://pangpang-blog.github.ioimages/apple-touch-icon.png" />
+  
+</head>
+<body>
+    <header class="global-header"  style="background-image:url( /images/bg.jpg )">
+    <section class="header-text">
+      <h1><a href="https://pangpang-blog.github.io">PangPang - Blog</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="mailto:pangpang-blog@p2shop.cn">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      
+      <a href="https://pangpang-blog.github.io" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">通过1000个代码重构，学习到的知识点</h1>
+    <div class="post-meta clearfix">
+    
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-03-09T18:25:31&#43;08:00">
+          Mar 9, 2018
+        </time>
+      </div>
+    
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<h1 id="通过1000个代码重构-学习到的知识点-what-i-learned-from-doing-1000-code-reviews-翻译">通过1000个代码重构，学习到的知识点  (What I learned from doing 1000 code reviews)(翻译)</h1>
+
+<p>在LinkedIn工作的时候，我大部分的工作都是做代码检查。有一些建议不断地反复出现，所以我决定把我和团队分享的清单放在一起。</p>
+
+<p><strong>建议 1: 出错时请抛（throw）出一个异常（exception）</strong></p>
+
+<p>我看到的一个常见的模式是：</p>
+
+<pre><code>List&lt;String&gt; getSearchResults(...) {
+  try {
+    List&lt;String&gt; results = // make REST call to search service
+    return results;
+  } catch (RemoteInvocationException e) {
+    return Collections.emptyList();
+  }
+}
+</code></pre>
+
+<p>这种模式实际上造成了我开发过的移动应用程序的中断。</p>
+
+<p>我们使用的搜索后端开始抛出异常。然而，应用程序的API服务器有一些类似于上面的代码。因此，从应用程序的角度来看，它获得了200的成功响应，并愉快地显示了空列表。</p>
+
+<p>相反，如果API抛出了一个异常，那么我们的监控系统就会立即将其提取出来，并修复。</p>
+
+<p>很多时候，当你遇到异常时，为了便利返回空对象。在java中空对象的例子是Optional.empty()，null,empty list。在解析URL时总是出现这样的问题。如果无法从字符串中解析URL，返回值为null。可以自问：“为什么URL是错误的？”我们应该在上游解决的数据问题吗？“</p>
+
+<p>空对象不是处理这项工作的合适工具。<strong>如果发生异常，则应抛出异常</strong>。</p>
+
+<p><strong>建议2：尽可能使用具体的类型(type)</strong></p>
+
+<p>这个建议基本上跟<a href="http://wiki.c2.com/?StringlyTyped">stringly typed programming</a>（强类型编程）是相反的。</p>
+
+<p>我经常看到类似这些例子的代码。</p>
+
+<pre><code>void doOperation(String opType, Data data); 
+// where opType is &quot;insert&quot;, &quot;append&quot;, or &quot;delete&quot;, this should have clearly been an enum
+
+String fetchWebsite(String url);
+// where url is &quot;https://google.com&quot;, this should have been an URN
+
+String parseId(Input input);
+// the return type is String but ids are actually Longs like &quot;6345789&quot;
+</code></pre>
+
+<p>用具体的类型可以让你避免一类错误，也是推荐java，这种强类型语言的理由。</p>
+
+<p>现在的问题是：如何成为终结“写坏的强类型代码（stringly typed code）”的程序员？。答案是：因为外部不使用强类型。有很多的方式接受字符串，比如：</p>
+
+<ul>
+<li>query and path parameters in urls</li>
+<li>JSON</li>
+<li>databases that don’t support enums</li>
+<li>poorly written libraries（写的不好的libraries）</li>
+</ul>
+
+<p>在这些情况下，你应该使用以下策略来避免这个问题：</p>
+
+<p>将字符串解析和序列化保持在程序的上下文中。</p>
+
+<p>下面举个例子：</p>
+
+<pre><code>// Step 1: Take a query param representing a company name / member id pair and parse it
+// example: context=Pair(linkedin,456)
+Pair&lt;String, Long&gt; companyMember = parseQueryParam(&quot;context&quot;);
+// this should throw an exception if malformed
+
+// Step 2: Do all the stuff in your application
+// MOST if not all of your code should live in this area
+
+// Step 3: Convert the parameter back into a String at the very end if necessary
+String redirectLink = serializeQueryParam(&quot;context&quot;);
+</code></pre>
+
+<p>这赋予了许多优点。可以发现错误的数据。如果出现问题，应用程序会提前报错。在数据经过一次验证之后，你也不必捕获解析异常。此外，使用强类型会展现更多方法的叙述，你不需要为每一个方法写javadocs。</p>
+
+<p><strong>建议3：请用Optionals代替null</strong></p>
+
+<p>java8中提供<a href="http://download.java.net/jdk8/docs/api/java/util/Optional.html">Optional</a>类。Optional类的Javadoc描述如下：</p>
+
+<p>这是一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。</p>
+
+<p>问题：什么是唯一有自己的缩写的异常？答：NPE(Null Pointer Exception)空指针异常 。</p>
+
+<p>这是在java中经常出现的异常，<a href="https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">被称为十亿美元的错误</a>。</p>
+
+<p>使用<code>Optional</code> 可以避免NPE，然而，它必须正确使用。</p>
+
+<p>这里有一些建议关于<code>Optional</code>的使用。</p>
+
+<ul>
+<li>你不能简单的调用<code>get()</code>方法，需要考虑<code>Optional</code>没有值的情况，并提出一个合理的默认值。</li>
+<li>如果没有一个合理的默认值，那么可以使用<code>.map()</code> 和 <code>.flatMap()</code>方法延迟定义。</li>
+<li>如果外部库返回null，用<code>Optional.ofNullable()</code>包裹相应的值，相信我，你以后会感谢你自己的。null会在程序中<code>冒泡(bubble up)</code>，所以停止在程序中使用它。</li>
+<li>在方法的返回类型中使用<code>Optional</code>. 因为你不需要读Javadoc，来找不存在值的情况。</li>
+</ul>
+
+<p>你应该避免使用类似这种方法：</p>
+
+<pre><code>// AVOID:
+CompletableFuture&lt;T&gt; method(CompletableFuture&lt;S&gt; param);
+// PREFER: 
+T method(S param);
+
+// AVOID:
+List&lt;T&gt; method(List&lt;S&gt; param);
+// PREFER:
+T method(S param);
+
+// AVOID: 
+T method(A param1, B param2, Optional&lt;C&gt; param3);
+// PREFER:
+T method(A param1, B param2, C param3);
+T method(A param1, B param2);
+// This method is clearly doing two things, it should be two methods
+// The same is true for boolean parameters
+</code></pre>
+
+<p>以上的方法中有共同之处是什么？它们使用容器对象，如Optional，List，Task作为方法的参数。当返回类型是相同的容器时，情况更糟。（一个带有<code>Optional</code>参数的方法并返回一个<code>Optional</code>。</p>
+
+<p>Why?</p>
+
+<p>1) <code>Promise&lt;A&gt; method(Promise&lt;B&gt; param)</code>
+is less flexible than simply having</p>
+
+<p>2) <code>A method(B param)</code>.</p>
+
+<p>如果你有一个<code>Promise&lt;B&gt;</code>，那么你可以使用1)，或者你可以使用2)，通过“提升”函数和map (ie. promise.map(method))。</p>
+
+<p>但是，如果您只有B，那么您可以轻松地使用2)，但是您不能使用1），这使得2）更灵活。</p>
+
+<p>我喜欢称之为“unlifting”，因为它是相对常见的功能实用方法“lift”。应用这些改写使方法更灵活、更容易使用的用户。</p>
+
+<p><strong>参考</strong></p>
+
+<p>看看我的另一篇关于&rdquo;Practical Functional Programming&rdquo;的文章：</p>
+
+<p><a href="https://hackernoon.com/practical-functional-programming-6d7932abc58b">https://hackernoon.com/practical-functional-programming-6d7932abc58b</a></p>
+
+  </section>
+  <footer>
+    
+    
+    
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:pangpang-blog@p2shop.cn">
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="https://pangpang-blog.github.io/liche/go_my_way2/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/hugo_create/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      北京衣念科技发展有限公司 PangPang-Blog
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="mailto:pangpang-blog@p2shop.cn">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script src="https://pangpang-blog.github.iojs/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  
+</body>
+</html>
+
