@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Dooray! &gt; Messenger &gt; slash command 介绍 &middot;  PangPang - Blog" />
+  
+  <meta name="theme-color" content="#hexcolor" />
+ 
+  <meta property="og:site_name" content="PangPang - Blog" />
+  <meta property="og:url" content="https://pangpang-blog.github.io/liche/dooraymessengerslashcommand/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2018-05-28T18:23:09&#43;08:00" />
+  
+  
+
+  <title>
+     Dooray! &gt; Messenger &gt; slash command 介绍 &middot;  PangPang - Blog
+  </title>
+
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/github.css" />
+  
+  <link rel="shortcut icon" href="https://pangpang-blog.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://pangpang-blog.github.io/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+    <header class="global-header"  style="background-image:url( /images/pangpang.png )">
+    <section class="header-text">
+      <h1><a href="https://pangpang-blog.github.io/">PangPang - Blog</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="mailto:pangpang-blog@p2shop.cn">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      
+      <a href="https://pangpang-blog.github.io/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Dooray! &gt; Messenger &gt; slash command 介绍</h1>
+    <div class="post-meta clearfix">
+    
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-05-28T18:23:09&#43;08:00">
+          May 28, 2018
+        </time>
+      </div>
+    
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<h2 id="dooray-messenger-slash-command-介绍">Dooray! &gt; Messenger &gt;  <em>slash command 介绍</em></h2>
+
+<h3 id="联动服务">联动服务</h3>
+
+<p>在Dooray messenger中可以用命令语句的方式接收信息，并提高业务效率。想实现messenger中未提供的功能时，可以使用此功能并结合自己的业务，高效率的自动化完成业务。</p>
+
+<p>要介绍的功能是如何使用command，以后会支持对bot、API等多样的联动服务。</p>
+
+<h3 id="slash-command">slash command</h3>
+
+<p>slash command是在<code>/</code>后面加字母的方式实现特定功能的命令语句。Dooray messenger提供 <code>/mute</code>, <code>/status</code>, <code>/search</code> 等基本语句。比如，查询信息内容，变更自己的状态等功能，在不使用鼠标点击情况下，通过命令快速实现。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/2.png" alt="2" /></p>
+
+<p>还可以通过自定义命令，来完成自己想要的功能。比如，每天早上接收交通情况、天气预报，通过输入简单的命名生成投票功能。</p>
+
+<p>下图是command 服务和messenger服务的通信过程</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/3.png" alt="3" /></p>
+
+<p>用户输入 <code>/</code>文字和对话窗登记过的command。输入的command通过messenger服务传输到command 服务。command 服务中把处理结果返回到messenger服务。messenger服务是通过command 服务返回的数据展示给用户。</p>
+
+<h3 id="使用环境">使用环境</h3>
+
+<p>用户可以在pc和手机中输入command确认返回结果。所以，命令制作者需要考虑手机环境下的layout。目前只对pc支持自定义命令功能。</p>
+
+<h3 id="制作介绍">制作介绍</h3>
+
+<p>关于command命令的制作、登记，在以下文档中介绍。</p>
+
+<hr />
+
+<h2 id="添加command命令">添加command命令</h2>
+
+<p>为了使用自定义command命令，需添加Dooray messenger。</p>
+
+<h3 id="移动到添加页面">移动到添加页面</h3>
+
+<p>Dooray messenger的左上方点击自己的名字选择 &lsquo;联动服务&rsquo;。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/4_2.png" alt="4" /></p>
+
+<p>和下面一样，显示空画面。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/5.png" alt="5" /></p>
+
+<h3 id="app-添加">app 添加</h3>
+
+<p>首先制作app。app是联动服务的捆扎单位。可以在一个app中添加多个command。输入下面的信息，制作app。各信息会在登记command时，显示在目录中。<img src="http://static.toastoven.net/prod_dooray_messenger/integration/6.png" alt="6" /></p>
+
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>설명</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Image</td>
+<td>在对话窗中使用command时显示成传输者的icon。</td>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>在对话窗中使用command时显示成传输者的姓名。</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>app的介绍。</td>
+</tr>
+</tbody>
+</table>
+
+<p>app创建成功。可以看见token和空的内容。token会在command请求时一同传送，参与请求验证。请注意不要泄漏token。如果token泄漏，请通过&rsquo;Regenerate&rsquo; 按钮重新发放token。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/7.png" alt="7" /></p>
+
+<h3 id="添加command">添加command</h3>
+
+<p>登记app后，点击slash command &lsquo;添加&rsquo;按钮。建议在一个app中添加密切相关的command。</p>
+
+<p>如果未制作过command，请添加下面的例<code>/hi</code> 。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/8.png" alt="8" /></p>
+
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Command</td>
+<td>在对话窗输入包含<code>/</code>的命令。命令词最好是能表达内部功能的直观性</td>
+</tr>
+
+<tr>
+<td>Request URL</td>
+<td>输入运行Command的服务器URL。</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>使用Command说明。让用户便于了解功能。</td>
+</tr>
+
+<tr>
+<td>Parameter Hint</td>
+<td>介绍参数（可以输入地域，时间，用户，日期，文字，数字等）。</td>
+</tr>
+
+<tr>
+<td>Public</td>
+<td>让其他人在对话窗中使用Command。</td>
+</tr>
+</tbody>
+</table>
+
+<p>成功添加了Command</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/9.png" alt="9" /></p>
+
+<h3 id="interactive-request-url-输入">Interactive Request URL 输入</h3>
+
+<p>通过按钮和下拉框菜单接收用户的事件，需要设置处理Interactive Message的URL。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/10.png" alt="10" /></p>
+
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Interactive Message Request URL</td>
+<td>通过按钮和下拉框菜跟用户交互时，需要输入传递用户请求的URL。</td>
+</tr>
+
+<tr>
+<td>Interactive Message Optional URL</td>
+<td>如果message的菜单列表dataSource从外部提供，输入要请求菜单列表的URL。</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="发送-hello-world-消息">发送&rdquo;Hello World!&rdquo; 消息</h2>
+
+<p>制作一个在对话窗中输入 <code>/hi</code>，回复&rdquo;Hello world!&ldquo;的Command。</p>
+
+<h3 id="执行command">执行Command</h3>
+
+<p>用户通过Dooray!messenger执行<code>/hi</code>Command时，Command服务会返回如下的JSON数据。</p>
+
+<pre><code>{
+    &quot;tenantId&quot;: &quot;1234567891234567891&quot;,
+    &quot;tenantDomain&quot;: &quot;guide.dooray.com&quot;,
+    &quot;channelId&quot;: &quot;1234567891234567891&quot;,
+    &quot;channelName&quot;: &quot;커맨드 가이드 채널&quot;,
+    &quot;userId&quot;: &quot;1234567891234567891&quot;,
+    &quot;command&quot;: &quot;/hi&quot;,
+    &quot;text&quot;: &quot;/hi&quot;
+    &quot;responseUrl&quot;: &quot;https://guide.dooray.com/messenger/api/commands/hook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;appToken&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;triggerId&quot;: &quot;1234567891234.xxxxxxxxxxxxxxxxxxxx&quot;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>tenantId</td>
+<td>注册Command的tenent ID</td>
+</tr>
+
+<tr>
+<td>tenantDomain</td>
+<td>注册Command的tenentDomain</td>
+</tr>
+
+<tr>
+<td>channelId</td>
+<td>Command请求的对话窗ID</td>
+</tr>
+
+<tr>
+<td>channelName</td>
+<td>Command请求的对话窗名字</td>
+</tr>
+
+<tr>
+<td>userId</td>
+<td>Command请求的用户ID</td>
+</tr>
+
+<tr>
+<td>command</td>
+<td>请求的Command</td>
+</tr>
+
+<tr>
+<td>text</td>
+<td>Command请求的内容</td>
+</tr>
+
+<tr>
+<td>responseUrl</td>
+<td>响应Command请求的web hook URL</td>
+</tr>
+
+<tr>
+<td>appToken</td>
+<td>注册app 的token，验证请求时使用</td>
+</tr>
+
+<tr>
+<td>triggerId</td>
+<td>触发事件的ID</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="响应">响应</h3>
+
+<p>Command服务会根据参数，返回数据。 <code>/hi</code> Command没有特殊的数据处理，返回<code>Hello World!</code>。</p>
+
+<pre><code>{
+    &quot;text&quot;: &quot;Hello World!&quot;,
+    &quot;responseType&quot;: &quot;ephemeral&quot;
+}
+</code></pre>
+
+<p>如上面一样响应时，只有执行Command的用户可以看见信息。</p>
+
+<p>如果想共享给对话窗内的全部成员，设置 <code>responseType</code>为 <code>inChannel</code>。</p>
+
+<pre><code>{
+    &quot;text&quot;: &quot;Hello World!&quot;,
+    &quot;responseType&quot;: &quot;inChannel&quot;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>responseType</td>
+<td>ephemeral</td>
+<td>设置message的显示type。- inChannel:显示给全部成员- ephemeral:只显示给调用Command的用户</td>
+</tr>
+
+<tr>
+<td>text</td>
+<td></td>
+<td>message 内容</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="发送message的4种方法">发送message的4种方法</h2>
+
+<p>执行Command时，message服务有4种方式发送message。</p>
+
+<ul>
+<li>首次发送信息</li>
+<li>发送message后追加发送</li>
+<li>更新已发送的message</li>
+<li>删除已发送的message并发送新的messaage</li>
+</ul>
+
+<h3 id="首次发送message">首次发送message</h3>
+
+<p>首次发送message方法非常简单。</p>
+
+<pre><code>{
+    &quot;responseType&quot;: &quot;inChannel&quot;,
+    &quot;text&quot;: &quot;Hello World!&quot;
+}
+</code></pre>
+
+<h3 id="追加发送message">追加发送message</h3>
+
+<p><code>replaceOriginal</code>的值为 <code>false</code>会追加发送。</p>
+
+<pre><code>{
+    &quot;replaceOriginal&quot;: false,
+    &quot;responseType&quot;: &quot;inChannel&quot;,
+    &quot;text&quot;: &quot;Hello World!&quot;
+}
+</code></pre>
+
+<h3 id="更新已发送的message">更新已发送的message</h3>
+
+<p><code>replaceOriginal</code>值为<code>true</code>更新之前发送的message，也不会收到alert通知。但不能修改发送过的<code>responseType</code>的值，想改变 <code>responseType</code>的值需要重新发送。</p>
+
+<pre><code>{
+    &quot;responseType&quot;: &quot;inChannel&quot;,
+    &quot;replaceOriginal&quot;: true,
+    &quot;text&quot;: &quot;Hello World!(Updated)&quot;
+}
+</code></pre>
+
+<h3 id="删除已发送的message并发送新的messaage">删除已发送的message并发送新的messaage</h3>
+
+<p>此操作会让参与话窗的成员收到alert通知。<code>deleteOriginal</code>值为 <code>true</code>时，删除已发送的message并发送新的messaage。</p>
+
+<pre><code>{
+    &quot;responseType&quot;: &quot;inChannel&quot;,
+    &quot;deleteOriginal&quot;: true,
+    &quot;text&quot;: &quot;Hello World!(Updated)&quot;
+}
+</code></pre>
+
+<p>请选择符合需要的发送message方法，制作command。</p>
+
+<hr />
+
+<h2 id="在message中添加按钮">在message中添加按钮</h2>
+
+<p>响应的message可以根据 <code>attachments</code> 字段设置按钮。收到message的用户可以点击按钮来进行相互。 下面介绍通过选择按钮和点击按钮结果的处理方法。</p>
+
+<p>下面是包含attachments字段，在对话窗中是否要发送message的例子。</p>
+
+<pre><code>{
+    &quot;text&quot;: &quot;Message&quot;,
+    &quot;attachments&quot;: [
+        {
+            &quot;callbackId&quot;: &quot;send-a1b2c3&quot;, // 用户之间有相互作用时，将同步发送。在识别出相互作用的attachment时可以使用。
+            &quot;actions&quot;: [
+                {
+                    &quot;name&quot;: &quot;send&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;Send&quot;, // 给用户输出的按钮文字
+                    &quot;value&quot;: &quot;posting&quot;, // Action的动作（不会给用户显示）的值
+                    &quot;style&quot;: &quot;primary&quot; // 可以更改按钮的样式. primary, danger, default
+                },
+                {
+                    &quot;name&quot;: &quot;send&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;Cancel&quot;,
+                    &quot;value&quot;: &quot;cancel&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+
+<p>收到相应message时，显示 &lsquo;Send&rsquo;和&rsquo;Cancel&rsquo;按钮 。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/11.png" alt="11" /></p>
+
+<p>点击&rsquo;Send&rsquo;按钮，会把以下的数据发送到Command服务的Interactive Request URL中。</p>
+
+<pre><code>{
+    &quot;tenant&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;domain&quot;: &quot;guide.dooray.com&quot;
+    },
+    &quot;channel&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;name&quot; &quot;command介绍channel&quot;
+    },
+    &quot;user&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+    },
+    &quot;commandName&quot;: &quot;/post&quot;,
+    &quot;command&quot;: &quot;/post&quot;,
+    &quot;text&quot;: &quot;&quot;,
+    &quot;callbackId&quot;: &quot;send-a1b2c3&quot;, // 用户选择的Action所属的Attachment callbackId
+    &quot;actionText&quot;: &quot;Send&quot;, // actionText - 用户选择的 Action Text.
+    &quot;actionValue&quot;: &quot;posting&quot;, // actionValue - 用户选择的 Action Value.
+    &quot;appToken&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;cmdToken&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;triggerId&quot;: &quot;&quot;,
+    &quot;commandRequestUrl&quot;: &quot;https://command.example.com/req&quot;,
+    &quot;channelLogId&quot;: &quot;-7386965175150134411&quot;,
+    &quot;originalMessage&quot;: { /* 包含action的信息 */ }
+    }
+}
+</code></pre>
+
+<p>用户点击按钮的逻辑处理，需要在command服务器上实现。</p>
+
+<hr />
+
+<h2 id="在message中添加下拉框">在message中添加下拉框</h2>
+
+<p>attachments message中可以添加下拉框。</p>
+
+<p>下面我们用大家喜爱的棋牌游戏，做一个投票的例子。</p>
+
+<h3 id="静态下拉框菜单">静态下拉框菜单</h3>
+
+<p>通过<code>options</code> 字段定义菜单内容。</p>
+
+<pre><code>&quot;attachments&quot;: [
+   {
+       &quot;name&quot;: &quot;games_list&quot;,
+       &quot;text&quot;: &quot;Pick a game...&quot;,
+       &quot;type&quot;: &quot;select&quot;,
+       &quot;options&quot;: [
+           {
+               &quot;text&quot;: &quot;rock-scissors-paper&quot;,
+               &quot;value&quot;: &quot;rcp&quot;
+           },
+           {
+               &quot;text&quot;: &quot;monopoly&quot;,
+               &quot;value&quot;: &quot;monopoly&quot;
+           },
+           {
+               &quot;text&quot;: &quot;Checkers&quot;,
+               &quot;value&quot;: &quot;checkers&quot;
+           },
+           {
+               &quot;text&quot;: &quot;Chess&quot;,
+               &quot;value&quot;: &quot;chess&quot;
+           },
+           {
+               &quot;text&quot;: &quot;Poker&quot;,
+               &quot;value&quot;: &quot;poker&quot;
+           },
+           {
+               &quot;text&quot;: &quot;scrabble&quot;,
+               &quot;value&quot;: &quot;scrabble&quot;
+           }
+       ]
+   }
+]
+</code></pre>
+
+<p>通过attachments字段，可以显示一下的下拉框菜单。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/12.png" alt="12" /></p>
+
+<h3 id="动态下拉框菜单">动态下拉框菜单</h3>
+
+<p>动态下拉框菜单用<code>dataSource</code>来替代 <code>options</code> 。<code>dataSource</code>可以根据相应的值显示目录，成员，对话窗，外部数据。</p>
+
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>dataSource</td>
+<td>目录</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td>成员</td>
+</tr>
+
+<tr>
+<td>channels</td>
+<td>对话窗</td>
+</tr>
+
+<tr>
+<td>external</td>
+<td>外部数据</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="成员目录">成员目录</h4>
+
+<p>设置<code>dataSource</code>的值为 <code>users</code>发送message时，可以显示当前对话窗的成员目录。用户可以在下拉框中输入搜索词，搜索全部成员。</p>
+
+<pre><code>&quot;attachments&quot;: [
+    {
+        &quot;type&quot;: &quot;select&quot;,
+        &quot;name&quot;: &quot;sel_users&quot;,
+        &quot;text&quot;: &quot;사용자 출력&quot;,
+        &quot;dataSource&quot;: &quot;users&quot;
+    }
+]
+</code></pre>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/13.png" alt="13" /></p>
+
+<h4 id="对话窗目录">对话窗目录</h4>
+
+<p>设置<code>dataSource</code>的值为<code>channels</code>发送message，可以显示用户所属的对话窗目录。</p>
+
+<pre><code>&quot;attachments&quot;: [
+    {
+        &quot;type&quot;: &quot;select&quot;,
+        &quot;name&quot;: &quot;sel_channels&quot;,
+        &quot;text&quot;: &quot;대화방 출력&quot;,
+        &quot;dataSource&quot;: &quot;channels&quot;
+    }
+]
+</code></pre>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/14.png" alt="14" /></p>
+
+<h4 id="外部数据目录">外部数据目录</h4>
+
+<p>设置<code>dataSource</code>的值为<code>external</code>发送message，可以显示外部数据目录。外部数据目录是从app注册时设置的 Interactive Optional URL中获取。</p>
+
+<pre><code>&quot;attachments&quot;: [
+    {
+        &quot;type&quot;: &quot;select&quot;,
+        &quot;name&quot;: &quot;sel_external&quot;,
+        &quot;text&quot;: &quot;외부 데이터&quot;,
+        &quot;dataSource&quot;: &quot;external&quot;
+    }
+]
+</code></pre>
+
+<p>客户端会把以下数据发送到Interactive Optional URL，获取目录数据。</p>
+
+<pre><code>{
+    &quot;type&quot;: &quot;interactive_message&quot;,
+    &quot;tenant&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;domain&quot;: &quot;guide.dooray.com&quot;
+    },
+    &quot;channel&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;name&quot;: &quot;Command 가이드 채널&quot;
+    },
+    &quot;user&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;name&quot;: &quot;홍길동&quot;
+    },
+    &quot;callbackId&quot;: &quot;sample&quot;,
+    &quot;actionName&quot;: &quot;sel_externel&quot;,
+    &quot;actionTs&quot;: 1524734546105
+}
+</code></pre>
+
+<p>command服务会根据上面的内容响应下拉框菜单。</p>
+
+<pre><code>{
+    &quot;options&quot;: [
+        {
+            &quot;text&quot;: &quot;external&quot;,
+            &quot;value&quot;: &quot;value1&quot;
+        },
+        {
+            &quot;text&quot;: &quot;load&quot;,
+            &quot;value&quot;: &quot;value2&quot;
+        },
+        {
+            &quot;text&quot;: &quot;success&quot;,
+            &quot;value&quot;: &quot;value3&quot;
+        }
+    ]
+}
+</code></pre>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/15.png" alt="15" /></p>
+
+<hr />
+
+<h2 id="发送attachments-message">发送attachments message</h2>
+
+<p>command可以发送attachments形态的特殊message。attachments组件中除了按钮和下拉框，还有其他多种多样的菜单。有效的运用attachments，可以提高沟通效率。</p>
+
+<h3 id="attachments-message">attachments message</h3>
+
+<p>下面的attachment块是title,说明，图片，超链接，按钮，下拉框等菜单。最多20个attachment块组合成attachments message。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/16.png" alt="16" /></p>
+
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>名字</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>text</td>
+<td>message内容</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>attachment</td>
+<td>message附加的内容。多个attachment组合构成attachments</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>authorName</td>
+<td>作者名字。可以用authorLink添加link</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>title</td>
+<td>attachment题目</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>text</td>
+<td>attachment内容</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>thumbUrl</td>
+<td>attachment的thumb图片URL</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>imageUrl</td>
+<td>attachment图片URL</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>field</td>
+<td>根据short的值，一行显示一个或两个字段</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>Interactive Menu</td>
+<td>下拉框菜单</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>Interactive Button</td>
+<td>按钮</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="data">Data</h3>
+
+<p>数据格式如下</p>
+
+<pre><code>{
+    &quot;text&quot;: &quot;NHN IT News!&quot;,
+    &quot;attachments&quot;: [
+        {
+            &quot;callbackId&quot;: &quot;guide-a1b2c3&quot;,
+            &quot;text&quot;: &quot;애플은 오늘 오전 2시에 WWDC를 통해 아이폰X 출시를 알렸다.&quot;,
+            &quot;title&quot;: &quot;아이폰 X 출시&quot;,
+            &quot;titleLink&quot;: &quot;https://dooray.com/&quot;,
+            &quot;authorName&quot;: &quot;NHN News&quot;,
+            &quot;authorLink&quot;: &quot;https://dooray.com/&quot;,
+            &quot;imageUrl&quot;: &quot;http://it.chosun.com/data/photos/cdn/20180423/2850453_09555838720000.jpg&quot;,
+            &quot;thumbUrl&quot;: &quot;http://www.kinews.net/news/photo/201804/119143_167793_5622.png&quot;,
+        },
+        {
+            &quot;fields&quot;: [
+                {
+                    &quot;title&quot;: &quot;출시 예정일&quot;,
+                    &quot;value&quot;: &quot;2018년 겨울&quot;,
+                    &quot;short&quot;: true
+                },
+                {
+                    &quot;title&quot;: &quot;예상 가격&quot;,
+                    &quot;value&quot;: &quot;125만원&quot;,
+                    &quot;short&quot;: true
+                }
+            ]
+        },
+        {
+            &quot;fields&quot;: [
+                {
+                    &quot;title&quot;: &quot;설명&quot;,
+                    &quot;value&quot;: &quot;한국 미출시&quot;,
+                }
+            ]
+        },
+        {
+            &quot;fields&quot;: [
+                {
+                    &quot;title&quot;: &quot;IOS&quot;,
+                    &quot;value&quot;: &quot;High Sierra OS&quot;,
+                }
+            ]
+        },
+        {
+            &quot;actions&quot;: [
+                {
+                    &quot;type&quot;: &quot;select&quot;,
+                    &quot;text&quot;: &quot;채널선택&quot;,
+                    &quot;name&quot;: &quot;guide-sel&quot;,
+                    &quot;dataSource&quot;: &quot;channels&quot;
+                }
+            ]
+        },
+        {
+            &quot;actions&quot;: [
+                {
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;공유하기&quot;,
+                    &quot;name&quot;: &quot;guide-btn&quot;,
+                    &quot;value&quot;: &quot;btnValue&quot;
+                },
+                {
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;다음 뉴스&quot;,
+                    &quot;name&quot;: &quot;guide-btn&quot;,
+                    &quot;value&quot;: &quot;btnValue&quot;
+                },
+            ]
+        }
+    ]
+}
+</code></pre>
+
+<h3 id="组件分析">组件分析</h3>
+
+<p>仔细看一下组件的构成要素。</p>
+
+<h4 id="message-object">Message Object</h4>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>text</td>
+<td></td>
+<td>message内容</td>
+</tr>
+
+<tr>
+<td>attachments</td>
+<td></td>
+<td>Attachment数组</td>
+</tr>
+
+<tr>
+<td>responseType</td>
+<td>&ldquo;ephemeral&rdquo;</td>
+<td>- &ldquo;ephemeral&rdquo;: 展示给调用Command用户- &ldquo;inChannel&rdquo;:展示给channel内的全部成员</td>
+</tr>
+
+<tr>
+<td>replaceOriginal</td>
+<td>true</td>
+<td>响应Interactive Message时，是否修改已发送的message</td>
+</tr>
+
+<tr>
+<td>deleteOriginal</td>
+<td>false</td>
+<td>响应Interactive Message时，是否删除已发送的message</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="attachment-object">Attachment Object</h4>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>text</td>
+<td></td>
+<td>Attachment 内容</td>
+</tr>
+
+<tr>
+<td>title</td>
+<td></td>
+<td>Attachment 题目</td>
+</tr>
+
+<tr>
+<td>titleLink</td>
+<td></td>
+<td>点击Attachment题目时，要移动的link</td>
+</tr>
+
+<tr>
+<td>authorName</td>
+<td></td>
+<td>Attachment 作者</td>
+</tr>
+
+<tr>
+<td>authorLink</td>
+<td></td>
+<td>点击Attachment 作者时，要移动的link</td>
+</tr>
+
+<tr>
+<td>fields</td>
+<td></td>
+<td>Field의 排序</td>
+</tr>
+
+<tr>
+<td>actions</td>
+<td></td>
+<td>Action의 排序</td>
+</tr>
+
+<tr>
+<td>callbackId</td>
+<td></td>
+<td>Action执行时的参数（维持session的作用）</td>
+</tr>
+
+<tr>
+<td>imageUrl</td>
+<td></td>
+<td>图片地址</td>
+</tr>
+
+<tr>
+<td>thumbUrl</td>
+<td></td>
+<td>thumb地址</td>
+</tr>
+
+<tr>
+<td>color</td>
+<td>#4757C4</td>
+<td>Attachment 颜色(HTML 颜色代码)</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="field-object">Field Object</h4>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>title</td>
+<td></td>
+<td>Field 题目</td>
+</tr>
+
+<tr>
+<td>value</td>
+<td></td>
+<td>Field 文字</td>
+</tr>
+
+<tr>
+<td>short</td>
+<td>false</td>
+<td>Field 宽度设置(true时，宽度为一半)</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="action-object">Action Object</h4>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type</td>
+<td></td>
+<td>Actiontype- &ldquo;button&rdquo;: 按钮- &ldquo;select&rdquo;: 下拉框菜单</td>
+</tr>
+
+<tr>
+<td>text</td>
+<td></td>
+<td>按钮下拉框显示的文字</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td></td>
+<td>发送到command服务的字段名</td>
+</tr>
+
+<tr>
+<td>value</td>
+<td></td>
+<td>发送到command服务的值</td>
+</tr>
+
+<tr>
+<td>style</td>
+<td>&ldquo;default&rdquo;</td>
+<td>按钮颜色- &ldquo;primary&rdquo;: 强调颜色- &ldquo;default&rdquo;: 基本颜色</td>
+</tr>
+
+<tr>
+<td>options</td>
+<td></td>
+<td>Option의 数组</td>
+</tr>
+
+<tr>
+<td>dataSource</td>
+<td></td>
+<td>代替&rsquo;options&rsquo;定义的值-&ldquo;users&rdquo;:成员目录- &ldquo;channels&rdquo;:channel目录&rdquo;external&rdquo;:数据从Interactive Message Optional URL获取</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="option-object">Option Object</h4>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>text</td>
+<td></td>
+<td>Option 文字</td>
+</tr>
+
+<tr>
+<td>value</td>
+<td></td>
+<td>发送到command服务的参数值</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="在对话窗中注册command">在对话窗中注册command</h2>
+
+<h3 id="对话窗中注册command">对话窗中注册command</h3>
+
+<p>command可以在1:1对话，group对话中注册并使用。打开添加command页面，有2个方法。</p>
+
+<p>第一，通过Messenger右上方设置按钮添加。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/17.png" alt="17" /></p>
+
+<p>第二，通过在对话窗中输入 <code>/</code>后，显示的联动服务按钮添加。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/18.png" alt="18" /></p>
+
+<p>command添加页面中会显示公开的command或自己生成的command。把需要的command通过&rsquo;添加&rsquo;按钮添加到对话窗中。如果没有command，可以通过本上面的文章中介绍的方法制作command。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/19.png" alt="19" /></p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/20.png" alt="20" /></p>
+
+<h3 id="公开command">公开command</h3>
+
+<p>如果想把自己制作的command共享给其他成员，可以设置成公开。组织内的其他成员可以自由使用。</p>
+
+<p>变更为非公开，已经添加command的成员也可以继续使用。如火不想让其他成员使用，请删除command。</p>
+
+<hr />
+
+<h2 id="例子-投票command">例子：投票command</h2>
+
+<h3 id="command服务器要求">command服务器要求</h3>
+
+<p>command服务需要提供可执行的REST API。</p>
+
+<table>
+<thead>
+<tr>
+<th>API 种类</th>
+<th>说明</th>
+<th>必填项</th>
+<th>方法</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>command Request URL</td>
+<td>处理用户command运行请求的URL</td>
+<td>O</td>
+<td>POST</td>
+</tr>
+
+<tr>
+<td>Interactive Message의 Request URL</td>
+<td>处理用户action（按钮点击，下拉框选择）的URL</td>
+<td>X</td>
+<td>POST</td>
+</tr>
+
+<tr>
+<td>Interactive Message의Optional URL</td>
+<td>在下拉框中使用外部数据的URL</td>
+<td>X</td>
+<td>POST</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="投票command">投票command</h3>
+
+<p>在对话窗中制作投票command的例子。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/21.png" alt="21" /></p>
+
+<h4 id="api">API</h4>
+
+<p>只使用command Request URL 和 Interactive Message Request URL</p>
+
+<h4 id="执行command格式">执行command格式</h4>
+
+<p>用户可以输入如下的投票command</p>
+
+<pre><code>/vote {题目} {项目1} &quot;{空项目}&quot; ... {项目n}
+</code></pre>
+
+<h4 id="步骤">步骤</h4>
+
+<ol>
+<li>用户执行command</li>
+<li>输出只能调用command用户可见的投票massage</li>
+<li>通过点击生成按钮给对话窗中的成员输出投票message</li>
+<li>可以通过对话窗中按钮参与投票</li>
+<li>生成投票的用户结束投票</li>
+<li>输出投票结果</li>
+</ol>
+
+<h3 id="执行投票command">执行投票command</h3>
+
+<p>用户将如下进行投票command。</p>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/22_1.png" alt="22" /></p>
+
+<p>command服务从Request UR接收json参数。</p>
+
+<pre><code>{
+    &quot;tenantId&quot;: &quot;1234567891234567891&quot;,
+    &quot;tenantDomain&quot;: &quot;guide.dooray.com&quot;,
+    &quot;channelId&quot;: &quot;1234567891234567891&quot;,
+    &quot;channelName&quot;: &quot;Command 가이드&quot;,
+    &quot;userId&quot;: &quot;1234567891234567891&quot;,
+    &quot;command&quot;: &quot;/vote&quot;,
+    &quot;text&quot;: &quot;점심식사 짜장면 짬뽕 \&quot;사천 탕수육\&quot;&quot;,
+    &quot;responseUrl&quot;: &quot;https://guide.dooray.com/messenger/api/commands/hook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;appToken&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;triggerId&quot;: &quot;1234567891234.xxxxxxxxxxxxxxxxxxxx&quot;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>tenantId</td>
+<td>注册Command的tenent ID</td>
+</tr>
+
+<tr>
+<td>tenantDomain</td>
+<td>注册Command的Domain</td>
+</tr>
+
+<tr>
+<td>channelId</td>
+<td>Command请求的对话窗ID</td>
+</tr>
+
+<tr>
+<td>channelName</td>
+<td>Command请求的对话窗名字</td>
+</tr>
+
+<tr>
+<td>userId</td>
+<td>Command请求的用户ID</td>
+</tr>
+
+<tr>
+<td>command</td>
+<td>Command名</td>
+</tr>
+
+<tr>
+<td>text</td>
+<td>用户请求的Command内容</td>
+</tr>
+
+<tr>
+<td>responseUrl</td>
+<td>请求command的对话窗的Webhook URL</td>
+</tr>
+
+<tr>
+<td>appToken</td>
+<td>注册app 的token，验证请求时使用</td>
+</tr>
+
+<tr>
+<td>triggerId</td>
+<td>触发事件的ID</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="执行command请求的响应">执行command请求的响应</h3>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/23_1.png" alt="23" /></p>
+
+<p>执行command请求的响应，只显示给调用的用户。为了生成投票或者取消的按钮，给用户发送如下message。</p>
+
+<pre><code>{
+    &quot;responseType&quot;: &quot;ephemeral&quot;,
+    &quot;text&quot;: &quot;Click 'Submit' button to start the vote.&quot;,
+    &quot;attachments&quot;: [
+        {
+            &quot;title&quot;: &quot;점심식사&quot;,
+            &quot;fields&quot;: [
+                {
+                    &quot;title&quot;: &quot;Item 1&quot;,
+                    &quot;value&quot;: &quot;짜장면&quot;,
+                    &quot;short&quot;: true
+                },
+                {
+                    &quot;title&quot;: &quot;Item 2&quot;,
+                    &quot;value&quot;: &quot;짬뽕&quot;,
+                    &quot;short&quot;: true
+                },
+                {
+                    &quot;title&quot;: &quot;Item 3&quot;,
+                    &quot;value&quot;: &quot;사천 탕수육&quot;,
+                    &quot;short&quot;: true
+                }
+            ]
+        },
+        {
+            &quot;callbackId&quot;: &quot;vote&quot;,
+            &quot;actions&quot;: [
+                {
+                    &quot;name&quot;: &quot;vote&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;Submit&quot;,
+                    &quot;value&quot;: &quot;점심식사 짜장면 짬뽕 \&quot;사천 탕수육\&quot;&quot;,
+                    &quot;style&quot;: &quot;primary&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;vote&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;Cancel&quot;,
+                    &quot;value&quot;: &quot;cancel&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+
+<h3 id="执行action请求">执行action请求</h3>
+
+<p>用户点击&rsquo;Submit&rsquo;按钮时，会向 Interactive Message의 Request URL发送如下数据。</p>
+
+<pre><code>{
+    &quot;tenant&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;domain&quot;: &quot;guide.dooray.com&quot;
+    },
+    &quot;channel&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;name&quot;: &quot;Command 가이드 채널&quot;
+    },
+    &quot;user&quot;: {
+        &quot;id&quot;: &quot;1234567891234567891&quot;,
+        &quot;name&quot;: &quot;홍길동&quot;
+    },
+    &quot;commandName&quot;: &quot;/vote&quot;,
+    &quot;command&quot;: &quot;/vote&quot;,
+    &quot;text&quot;: &quot;점심식사 짜장면 짬뽕 \&quot;사천 탕수육\&quot;&quot;,
+    &quot;callbackId&quot;: &quot;vote&quot;,
+    &quot;actionText&quot;: &quot;Submit&quot;,
+    &quot;actionValue&quot;: &quot;점심식사 짜장면 짬뽕 \&quot;사천 탕수육\&quot;&quot;,
+    &quot;appToken&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;cmdToken&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;triggerId&quot;: &quot;1234567891234.xxxxxxxxxxxxxxxxxxxx&quot;,
+    &quot;commandRequestUrl&quot;: &quot;https://command.guide.doc/req&quot;,
+    &quot;channelLogId&quot;: &quot;-7386965175150134411&quot;,
+    &quot;originalMessage&quot;: { /* Message Object */ }
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>callbackId</td>
+<td>用户选择的Action所属的Attachment ID</td>
+</tr>
+
+<tr>
+<td>actionText</td>
+<td>用户选择的actionText</td>
+</tr>
+
+<tr>
+<td>actionValue</td>
+<td>用户选择的action值</td>
+</tr>
+
+<tr>
+<td>commandRequestUrl</td>
+<td>command Request URL</td>
+</tr>
+
+<tr>
+<td>channelLogId</td>
+<td>message ID</td>
+</tr>
+
+<tr>
+<td>originalMessage</td>
+<td>上一个响应message</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="对action的响应">对action的响应</h3>
+
+<p><img src="http://static.toastoven.net/prod_dooray_messenger/integration/24_1.png" alt="24" /></p>
+
+<p>通过&rsquo;Submit&rsquo;按钮的响应，发送投票message。生成确认message不再需要，所以删除后重新创建message。</p>
+
+<pre><code>{
+    &quot;responseType&quot;: &quot;inChannel&quot;, 
+    &quot;deleteOriginal&quot;: true, 
+    &quot;text&quot;: &quot;(dooray://1234567891234567891/members/1234567891234567891 \&quot;member\&quot;) created the vote!&quot;,
+    &quot;attachments&quot;: [
+        {
+            &quot;callbackId&quot;: &quot;1525223162093-(dooray://1234567891234567891/members/1234567891234567891 \&quot;member\&quot;)&quot;,
+            &quot;title&quot;: &quot;점심식사&quot;,
+            &quot;actions&quot;: [
+                {
+                    &quot;name&quot;: &quot;vote&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;짜장면&quot;,
+                    &quot;value&quot;: 0
+                },
+                {
+                    &quot;name&quot;: &quot;vote&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;짬뽕&quot;,
+                    &quot;value&quot;: 1
+                },
+                {
+                    &quot;name&quot;: &quot;vote&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;사천 탕수육&quot;,
+                    &quot;value&quot;: 2
+                }
+            ],
+            &quot;color&quot;: &quot;#4286f4&quot;
+        },
+        {
+            &quot;callbackId&quot;: &quot;1525223162093-(dooray://1234567891234567891/members/1234567891234567891 \&quot;member\&quot;)&quot;,
+            &quot;text&quot;: &quot;&quot;,
+            &quot;actions&quot;: [
+                {
+                    &quot;name&quot;: &quot;vote&quot;,
+                    &quot;type&quot;: &quot;button&quot;,
+                    &quot;text&quot;: &quot;Close the vote (Show result)&quot;,
+                    &quot;value&quot;: &quot;end&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>必填项</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>deleteOriginal</td>
+<td>false</td>
+<td>在创建新message前是否删除已有的信件</td>
+</tr>
+
+<tr>
+<td>replaceOriginal</td>
+<td>true</td>
+<td>是否更新当前message</td>
+</tr>
+</tbody>
+</table>
+
+<p>之后的是用户点击按钮事件的请求和响应信息的反复。</p>
+
+  </section>
+  <footer>
+    
+    
+    
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+      <div class="author-contact col-md-4">
+        <a href="mailto:pangpang-blog@p2shop.cn">
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          &nbsp;Contact me
+        </a>
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="https://pangpang-blog.github.io/limingxie/docker_mysql/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      北京衣念科技发展有限公司 PangPang-Blog
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="mailto:pangpang-blog@p2shop.cn">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script src="https://pangpang-blog.github.io/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  
+</body>
+</html>
+

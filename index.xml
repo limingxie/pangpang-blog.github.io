@@ -7,10 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>北京衣念科技发展有限公司 PangPang-Blog</copyright>
-    <lastBuildDate>Tue, 27 Mar 2018 07:28:49 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 May 2018 18:23:09 +0800</lastBuildDate>
     
 	<atom:link href="https://pangpang-blog.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dooray! &gt; Messenger &gt; slash command 介绍</title>
+      <link>https://pangpang-blog.github.io/liche/dooraymessengerslashcommand/</link>
+      <pubDate>Mon, 28 May 2018 18:23:09 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/liche/dooraymessengerslashcommand/</guid>
+      <description>Dooray! &amp;gt; Messenger &amp;gt; slash command 介绍 联动服务 在Dooray messenger中可以用命令语句的方式接收信息，并提高业务效率。想实现messenger中未提供的功能时，可以使用此功能并结合自己的业务，高效率的自动化完成业务。
+要介绍的功能是如何使用command，以后会支持对bot、API等多样的联动服务。
+slash command slash command是在/后面加字母的方式实现特定功能的命令语句。Dooray messenger提供 /mute, /status, /search 等基本语句。比如，查询信息内容，变更自己的状态等功能，在不使用鼠标点击情况下，通过命令快速实现。
+还可以通过自定义命令，来完成自己想要的功能。比如，每天早上接收交通情况、天气预报，通过输入简单的命名生成投票功能。
+下图是command 服务和messenger服务的通信过程
+用户输入 /文字和对话窗登记过的command。输入的command通过messenger服务传输到command 服务。command 服务中把处理结果返回到messenger服务。messenger服务是通过command 服务返回的数据展示给用户。
+使用环境 用户可以在pc和手机中输入command确认返回结果。所以，命令制作者需要考虑手机环境下的layout。目前只对pc支持自定义命令功能。
+制作介绍 关于command命令的制作、登记，在以下文档中介绍。
+添加command命令 为了使用自定义command命令，需添加Dooray messenger。
+移动到添加页面 Dooray messenger的左上方点击自己的名字选择 &amp;lsquo;联动服务&amp;rsquo;。
+和下面一样，显示空画面。
+app 添加 首先制作app。app是联动服务的捆扎单位。可以在一个app中添加多个command。输入下面的信息，制作app。各信息会在登记command时，显示在目录中。   구분 설명     Image 在对话窗中使用command时显示成传输者的icon。   Name 在对话窗中使用command时显示成传输者的姓名。   Description app的介绍。    app创建成功。可以看见token和空的内容。token会在command请求时一同传送，参与请求验证。请注意不要泄漏token。如果token泄漏，请通过&amp;rsquo;Regenerate&amp;rsquo; 按钮重新发放token。
+添加command 登记app后，点击slash command &amp;lsquo;添加&amp;rsquo;按钮。建议在一个app中添加密切相关的command。</description>
+    </item>
     
     <item>
       <title>使用docker运行mysql</title>
