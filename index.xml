@@ -34,6 +34,37 @@ app 添加 首先制作app。app是联动服务的捆扎单位。可以在一个
     </item>
     
     <item>
+      <title>Go项目的测试代码（项目运用）</title>
+      <link>https://pangpang-blog.github.io/limingxie/my_go_test1/</link>
+      <pubDate>Sun, 27 May 2018 20:37:02 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/limingxie/my_go_test1/</guid>
+      <description>上一篇文章介绍了最基本的测试代码的写法。
+Go项目的测试代码（基础）
+这里简单的共享一下我在项目中使用的方式。
+项目结构 我们实际项目中, 结构简单地分了控制层controllers和模块层modles
+ 因为现在都已微服务的形式开发，没必要太复杂的结构。
+分控制层和模块层已经能满足我们的需求，不需要再细分了。
+ |___config ||==&amp;gt; 配置文件 | |___config.qa.go | |___config.production.go ... ... |___controllers ||==&amp;gt; 控制层，只做参数的有效性和简单的逻辑处理 | |___app_api_test.go | |___app_api.go | |___init_test.go | |___tenant_api.go ... ... |___models ||==&amp;gt; 模块层，所有的业务都是在模块层里实现的 | |___app.go | |___app_test.go | |___init_test.go | |___tenant.go ... ... |___main.go ||==&amp;gt; 系统的入口 |___factory ||| |___kit ||| ==&amp;gt; 按需求自定义建立一个package方便使用 |___filters ||| ... ...   看项目结构的话，可以发现测试方法直接写在对应的package里面。
+有些人喜欢把测试方法分另一个package里写，也可以~ 不同人有不同的喜好。 我也试过这种方式，但是还是喜欢写在同一个package里面，这么写简单方便。
+ 控制层controllers和模块层modles的不同方式 控制层controllers
+控制层是提供接口api的直接入口，所以那些重要的api都需要写测试方法。
+我喜欢在这里写参数验证，业务验证等等主要功能的测试。</description>
+    </item>
+    
+    <item>
+      <title>Go项目的测试代码（基础）</title>
+      <link>https://pangpang-blog.github.io/limingxie/my_go_test/</link>
+      <pubDate>Sun, 27 May 2018 20:36:02 +0800</pubDate>
+      
+      <guid>https://pangpang-blog.github.io/limingxie/my_go_test/</guid>
+      <description>最近写了测试代码，整理了一下。
+先看看简单的测试代码
+// add_test.go ==&amp;gt; 文件名 _test.go 结尾的默认为测试代码文件 package models import ( &amp;quot;testing&amp;quot; ) //Test开头的默认为测试方法 func TestAdd(t *testing.T) { //arrange var x, y, res int x = 2 y = 3 //act result = Add(x, y) //assert if result != 5 { t.Fatal(&amp;quot;Add的结果不正确&amp;quot;) } }  // add.go package models func Add(x, y int) int { return x + y }  查看测试结构。
+$ go test -v ==&amp;gt; 依次运行当前package的 _test.</description>
+    </item>
+    
+    <item>
       <title>使用docker运行mysql</title>
       <link>https://pangpang-blog.github.io/limingxie/docker_mysql/</link>
       <pubDate>Tue, 27 Mar 2018 07:28:49 +0800</pubDate>
@@ -76,18 +107,6 @@ Dooray也是一个聊天工具，有客户端和web端
  push commit时message内容输入fix#my-dooray-project/1234 ，my-dooray-project业务的序号1234中会记录push内容。
  除了fix还可以用以下的单词。
    해결, 완료, fix,fixed, close, closes, closed ressolve, resolves, resolved   Dooray的业务内容中所记录内容如下。  </description>
-    </item>
-    
-    <item>
-      <title>Go项目的测试代码</title>
-      <link>https://pangpang-blog.github.io/limingxie/my_go_test/</link>
-      <pubDate>Thu, 15 Mar 2018 20:36:02 +0800</pubDate>
-      
-      <guid>https://pangpang-blog.github.io/limingxie/my_go_test/</guid>
-      <description>说明为什么写测试代码？ 怎么写测试代码？ 的文章很多，这里就不多说了。
-直接来点干货，看代码。
-// add_test.go package models import ( &amp;quot;testing&amp;quot; ) func TestAdd(t *testing.T) { //arrange var x, y, res int x = 2 y = 3 //act res = Add(x, y) //assert if res != 5 { t.Fatal(&amp;quot;Add的结果不正确&amp;quot;) } }  // add.go package models func Add(x, y int) int { return x + y }  为了看结果需要运行以下命令。
-$ go test -v === RUN TestAdd --- PASS: TestAdd (0.</description>
     </item>
     
     <item>
