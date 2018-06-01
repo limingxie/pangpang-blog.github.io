@@ -273,7 +273,7 @@ func Tenant_SetTestData(testXormEngine *xorm.Engine, xormEngine *xorm.Engine) {
 <li>准备一个<code>公用的mysql数据库</code>(没有的话可以让下班最晚的员工开数据库共享&hellip;^^)<br /></li>
 <li>在公共的数据库里<code>添加原始数据</code></li>
 <li>每个组员都可以<code>灵活利用Seed方法</code>，把数据导入到自己本地数据库。<br />
-不嫌慢的话直接调用公用数据库。<br />
+不嫌慢的话直接调用公用数据库。(也可以<a href="https://limingxie.github.io/limingxie/docker_mysql/">使用docker镜像</a>)<br />
 (Seed方法的原始数据库地址和目标数据库地址可以灵活地去修改，导数据非常easy)<br /></li>
 <li>如果原始数据有变化，组员之间<code>相互共享</code>，从新导入。</li>
 </ul>
@@ -413,6 +413,13 @@ go test
 <p>我：<code>没问题，现在可以发布...^^</code></p>
 </blockquote>
 
+<hr />
+
+<p>下篇文章介绍项目中我是怎么使用测试替身的&hellip;^^<br />
+<a href="https://pangpang-blog.github.io/limingxie/my_go_test3/">Go项目的测试代码3（测试替身Test Double）</a></p>
+
+<h3 id="未完继续">未完继续</h3>
+
   </section>
   <footer>
     
@@ -440,7 +447,7 @@ go test
       <li class="previous"><a href="https://pangpang-blog.github.io/limingxie/my_go_test/"><span aria-hidden="true">&larr;</span> Older</a></li>
       
       
-      <li class="next"><a href="https://pangpang-blog.github.io/liche/dooraymessengerslashcommand/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/my_go_test3/">Newer <span aria-hidden="true">&rarr;</span></a></li>
       
     </ul>
   </footer>

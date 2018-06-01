@@ -109,6 +109,61 @@ app 添加 首先制作app。app是联动服务的捆扎单位。可以在一个
   
   <article>
   <header>
+    <h2><a href="https://pangpang-blog.github.io/limingxie/my_go_test3/">Go项目的测试代码3（测试替身Test Double）</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-05-27T20:38:02&#43;08:00">
+          May 27, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    上一篇文章介绍了项目中测试代码的写法。
+Go项目的测试代码2（项目运用）
+这里简单的共享一下测试替身。
+当我们写测试代码的时候，经常遇到一个问题。
+跟别的模块或服务有依赖性，可是功能还没开发完。
+或是因为各种原因(安全，白名单，内网等等&hellip;)开发环境里无法调用相应的模块。
+这时候我们应该如何去写测试代码？
+因此测试替身Test Double出现了。 其功能和名字一样，做替身。
+测试替身Test Double的分以下类型。 Dummy, Stub, Fake, Spy, Mock
+Dummy 最简单、最原始的测试替身型别。Dummy 没有实作，最常用于需要参数值但不使用它的情况。
+Null 可视为是 Dummy，但真的 Dummy 是接口或基类的衍生，且完全不包含实作。
+Stub Dummy 的上一级，Stub 是接口或基类的最低限度实作。
+会传回 Void 的方法通常完全不包含实作，而会传回值的方法通常会传回硬式编码的值。
+Spy 测试 Spy 类似 Stub，但除了提供客户端可叫用成员的实例，
+Spy 还会记录叫用了哪些成员，好让单元测试验证所叫用的成员是否符合预期。
+Fake Fake 包含更复杂的实作，通常涉及所继承型别之不同成员之间的互动。
+虽然不是完整的生产实作，但 Fake 与生产实作很相似，尽管它会采取一些快捷方式。
+Mock Mock 是由 Mock 链接库动态建立 (其他通常是由测试开发人员使用程序代码来产生)。
+测试开发人员永远看不到实作接口或基类的实际程序代码，但是可以设定 Mock 以提供传回值、预期要叫用的特定成员&hellip;等等。
+视其中的设定而定，Mock 的行为可能会像 Dummy、Stub 或 Spy。
+上面是网上流行的概念和理论。
+我在项目中的运用 我开发的是在企业微信中的应用，所以需要调用企业微信的API，
+用过的人应该知道，这需要登记可信域名(简单的说不能本地用，只能发布到服务器才能调用)。
+也可以用第三方工具去模拟调试，但是这么做感觉很不方便。而且Debug也相当麻烦。
+我是这么处理的。
+项目初期(一阶段) 直接写硬代码hardcode。
+一般我们都会说尽量避免写硬代码hardcode,
+但是项目初期我建议大家这么写。
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/my_go_test3/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
     <h2><a href="https://pangpang-blog.github.io/limingxie/my_go_test1/">Go项目的测试代码（项目运用）</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
@@ -402,51 +457,15 @@ Go有许多web框架，但功能大同小异。大部分会提供一下的功能
 </article>
 
   
-  
-  <hr/>
-  
-  <article>
-  <header>
-    <h2><a href="https://pangpang-blog.github.io/limingxie/go_test/">Go项目中编写测试代码的经验</a></h2>
-    <div class="post-meta clearfix">
-      <div class="post-date pull-left">
-        Posted on
-        <time datetime="2018-03-09T18:14:08&#43;08:00">
-          Mar 9, 2018
-        </time>
-      </div>
-    </div>
-  </header>
-  <div>
-    http://sabzil.org/writing-a-unit-test/
-http://10.202.101.25:8090/pages/viewpage.action?pageId=12551088
-备注：以下内容是我在学习过程所整理的内容，所以有些内容有可能不是正确。
-为什么写测试代码? 我们做项目写代码的时候，已知会有这样的疑惑和担忧。
-&ldquo;我写的正确吗?&rdquo; &ldquo;我这么编写其他地方不会受到影响吗?&rdquo;
-我们之所有这样的担忧，我认为应该是一下2种原因导致的。 第一，编写代码以后，很难构建针对开发内容发出请求和响应请求的模块。 第二，编程的时候会忘记之前的定好的原则，违反这些原则有可能会有一些错误。
-根据&rdquo;测试驱动开发 TDD 实践和工具&rdquo; 和 几篇博客文章以及几本书，再写测试代码的感觉能找出问题的原因。
-所以我决定在进行中的项目里适用测试代码。
-测试代码？ 写测试代码需要注意以下几点。 1. 通过 &ldquo;提问 → 回答 → 优化 → 反复&rdquo; 的过程，反复的编写测试代码，失败，再整理。 2. 测试的最小单位是函数，可以以函数为单位编写测试代码。 3. 设计的时候先定义行为然后在考虑行为的属性。
-怎么写测试代码? Go 语言里的测试代码可以根据官方提供的 “testing” 包编写。
-可以使用第三方工具更便捷的编写测试代码。 1. testify ( go get -u github.com/stretchr/testify ) 2. goconvey ( go get -u github.com/smartystreets/goconvey )
-testify提供和 assert, http, mock, require, suite 一样的的包，更方便的让我们做检验。goconvey是更方便的让我们在网页里确认测试结果的工具。
-goconvey是我们运行 goconvey会展示以下内容，让我们一眼能看出测试结果。 scr 1 我们可以通过 coverage 确认以下内容。 scr 2
-  </div>
-  
-  <footer>
-    <ul class="pager">
-      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/go_test/">Read more <span aria-hidden="true">&raquo;</span></a></li>
-    </ul>
-  </footer>
-  
-</article>
-
-  
 </div>
 <nav class="pagination" role="navigation">
 
+  <hr />
 
-  <span class="page-number">Page 1 of 1</span>
+
+  <span class="page-number">Page 1 of 2</span>
+
+<a class="older-posts" href="/page/2/">Older Posts <span aria-hidden="true">&raquo;</span></a>
 
 </nav>
 

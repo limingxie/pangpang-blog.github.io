@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" PangPang - Blog" />
+  
+  <meta name="theme-color" content="#hexcolor" />
+ 
+  <meta property="og:site_name" content="PangPang - Blog" />
+  <meta property="og:url" content="https://pangpang-blog.github.io/" />
+  
+  
+  <meta property="og:type" content="website" />
+  
+
+  <title>
+     PangPang - Blog
+  </title>
+
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://pangpang-blog.github.io/css/github.css" />
+  
+  <link rel="shortcut icon" href="https://pangpang-blog.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://pangpang-blog.github.io/images/apple-touch-icon.png" />
+  
+  <link href="https://pangpang-blog.github.io/index.xml" rel="alternate" type="application/rss+xml" title="PangPang - Blog" />
+  
+</head>
+<body>
+    <header class="global-header"  style="background-image:url( /images/pangpang.png )">
+    <section class="header-text">
+      <h1><a href="https://pangpang-blog.github.io/">PangPang - Blog</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="mailto:pangpang-blog@p2shop.cn">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      
+      
+      <a href="https://pangpang-blog.github.io/index.xml" class="btn-header btn-subscribe hidden-xs">
+        <i class="fa fa-rss" aria-hidden="true"></i>
+        &nbsp;Subscribe
+      </a>
+      
+    </section>
+  </header>
+  <main class="container">
+
+<div class="article-list">
+  
+  
+  <article>
+  <header>
+    <h2><a href="https://pangpang-blog.github.io/limingxie/go_test/">Go项目中编写测试代码的经验</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-03-09T18:14:08&#43;08:00">
+          Mar 9, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    http://sabzil.org/writing-a-unit-test/
+http://10.202.101.25:8090/pages/viewpage.action?pageId=12551088
+备注：以下内容是我在学习过程所整理的内容，所以有些内容有可能不是正确。
+为什么写测试代码? 我们做项目写代码的时候，已知会有这样的疑惑和担忧。
+&ldquo;我写的正确吗?&rdquo; &ldquo;我这么编写其他地方不会受到影响吗?&rdquo;
+我们之所有这样的担忧，我认为应该是一下2种原因导致的。 第一，编写代码以后，很难构建针对开发内容发出请求和响应请求的模块。 第二，编程的时候会忘记之前的定好的原则，违反这些原则有可能会有一些错误。
+根据&rdquo;测试驱动开发 TDD 实践和工具&rdquo; 和 几篇博客文章以及几本书，再写测试代码的感觉能找出问题的原因。
+所以我决定在进行中的项目里适用测试代码。
+测试代码？ 写测试代码需要注意以下几点。 1. 通过 &ldquo;提问 → 回答 → 优化 → 反复&rdquo; 的过程，反复的编写测试代码，失败，再整理。 2. 测试的最小单位是函数，可以以函数为单位编写测试代码。 3. 设计的时候先定义行为然后在考虑行为的属性。
+怎么写测试代码? Go 语言里的测试代码可以根据官方提供的 “testing” 包编写。
+可以使用第三方工具更便捷的编写测试代码。 1. testify ( go get -u github.com/stretchr/testify ) 2. goconvey ( go get -u github.com/smartystreets/goconvey )
+testify提供和 assert, http, mock, require, suite 一样的的包，更方便的让我们做检验。goconvey是更方便的让我们在网页里确认测试结果的工具。
+goconvey是我们运行 goconvey会展示以下内容，让我们一眼能看出测试结果。 scr 1 我们可以通过 coverage 确认以下内容。 scr 2
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/go_test/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+</div>
+<nav class="pagination" role="navigation">
+
+  <hr />
+
+
+<a class="newer-posts" href="/"><span aria-hidden="true">&laquo;</span> Newer Posts</a>
+
+  <span class="page-number">Page 2 of 2</span>
+
+</nav>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      北京衣念科技发展有限公司 PangPang-Blog
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="mailto:pangpang-blog@p2shop.cn">
+    <i class="fa fa-envelope"></i>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <script src="https://pangpang-blog.github.io/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  
+</body>
+</html>
+
+
