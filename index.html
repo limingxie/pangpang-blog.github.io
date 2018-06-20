@@ -175,6 +175,82 @@ Mock Mock 是由 Mock 链接库动态建立 (其他通常是由测试开发人�
   
   <article>
   <header>
+    <h2><a href="https://pangpang-blog.github.io/limingxie/encrpytion_key/">公钥，私钥，数字签名，数字证书的相互关系</a></h2>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-05-27T20:38:02&#43;08:00">
+          May 27, 2018
+        </time>
+      </div>
+    </div>
+  </header>
+  <div>
+    我们经常听到数字证书，数字签名这些词。
+这些证书，签名到底是什么？
+他们又起到什么样的作用？ 其原理是什么？
+了解这些我们需要先了解加密方式，以及什么是公钥？什么是私钥？
+1. 加密方式 先解释一下2种常用的加密方式。
+◆ 对称加密
+加密的传统方法是对称加密。发出讯息者用一把钥匙对讯息加密。
+接收讯息者需用这把钥匙将加密了的讯息解密。
+这把钥匙必须以一种其他人没有机会得到它的方式给予接收讯息者。
+如果其他人得到了这把钥匙，这种加密方式就没用了。
+◆ 非对称加密算法
+非对称加密算法需要两个密钥：公开密钥(publickey)和私有密钥(privatekey)
+公开密钥与私有密钥是一对，可以相互加密和解密。
+如果用公钥对数据进行加密，只有用对应的密钥才能解密。
+如果用密钥对数据进行加密，那么只有用对应的公钥才能解密。
+因为非对称加密算法安全性比较高，所以下面的数字签名，数字证书都是用了非对称加密算法。
+
+2. 数字签名digital signature 在现实生活中，签名是为了表示这是签名者写的。计算机中，数字签名也是相同的含义。
+举一个例子如果A，B两台计算机相互通讯：
+A计算机传输给B计算机信息的时候，A计算机会在消息的最后写上去自己的签名，以代表这些信息是A计算机的。 B计算机接到消息后，先看签名是不是A计算机判断不是别人冒充A计算机发送不安全或是无效的信息(有效性)。 除此之外，数字签名还能证明消息传输过程中没有被篡改(完整性)。
+◆ 原理
+简单的说的话其实就是：
+A计算机给B计算机传输信息的时候，
+A计算机在信息后面加自己的签名(字符串)，用自己的私钥(privatekey)加密。
+B计算机接到数据后，用A计算机的公钥(publickey)解密，确认来源是不是A计算机。
+这样确保了完整性，而且A计算机也不可抵赖
+(因为用A计算机公钥解密的信息只能是A计算机的私钥加密的信息)
+
+3. 数字证书 先预想一个场景，如果有10台计算机，10台计算机需要记住相互之间的公钥(publickey)，
+那有100台计算机，1000台呢？ 他们之间都需要记住相互的公钥吗？
+答案肯定是不能，那如何解决这些问题呢？
+其实很简单，有个第三方中介机构。记住了这些1000台的公钥相对应的资料。
+这种机构称为认证机构(Certification Authority， CA)。
+CA开一个证明这是计算机A的信息，发给B计算机。
+B计算机通过CA的证明，可以确认这是A计算机的信息。
+◆ 如何生成证书？
+A计算机将自己的【公钥A】给CA
+CA用自己的【私钥CA】给【公钥A】加密，生成【数字签名A】
+CA把【公钥A】，【数字签名A】，附加一些【A计算机的信息】整合在一起，生成证书，发给A计算机。
+◆ 如何验证证书？
+A计算机发信息给B计算机的时候，会附加【数字签名A】
+B计算机通过CA的公钥解密【数字签名A】，既可以确认这是A计算机发的信息。
+(其实详细原理不是这样，是解证书得到哈希值，通过算法比较这个哈希值的。)
+
+总结 两台计算机相互通讯的时候，为了确保有效性和完整性。需要签名证明是自己(数字签名)。
+这签名不能随便公开，所以需要加密。
+加密的时候使用的是非对称加密算法。(公钥，私钥)
+相互通讯的计算机多了后，需要一个中介公司来证明这个签名是合法的(数字证书)。
+这中介机构叫(Certification Authority， CA)。
+  </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="https://pangpang-blog.github.io/limingxie/encrpytion_key/">Read more <span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+  </footer>
+  
+</article>
+
+  
+  
+  <hr/>
+  
+  <article>
+  <header>
     <h2><a href="https://pangpang-blog.github.io/limingxie/my_go_test1/">Go项目的测试代码2（项目运用）</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
@@ -416,52 +492,6 @@ Go My Way是介绍我用Go语言开发web应用时首选方案的3篇文章 . �
   <footer>
     <ul class="pager">
       <li class="next"><a href="https://pangpang-blog.github.io/liche/go_my_way2/">Read more <span aria-hidden="true">&raquo;</span></a></li>
-    </ul>
-  </footer>
-  
-</article>
-
-  
-  
-  <hr/>
-  
-  <article>
-  <header>
-    <h2><a href="https://pangpang-blog.github.io/liche/go_my_way1/">Go My Way #1 - web 框架</a></h2>
-    <div class="post-meta clearfix">
-      <div class="post-date pull-left">
-        Posted on
-        <time datetime="2018-03-09T18:23:09&#43;08:00">
-          Mar 9, 2018
-        </time>
-      </div>
-    </div>
-  </header>
-  <div>
-    Go My Way #1 - web 框架 Jun 12, 2017
-Ruby的Ruby on Rails，Java的Spring，Python的Django,Nodejs的Express。多数有人气的语言都有主流的web框架。所以不需要多想使用主流框架就可以以，但是Go没有这些。Go提倡根据情况合理的组合package。熟练了以后非常方便，但对于第一次接触Go的人选择package是困难的事情。
-接触Go已有3年，过去1年中积极使用了Go语言。起初公司内只有自己使用Go，现在使用Go开发的同事多了起来。我们公司在中国提供it服务，目前阿里云里运营着5个linux服务器和2个windows服务器。共有50左右的服务，其中用Go开发的服务占10个左右。
-就这样使用Go语言开发，有了自己的开发方式。我想通过3偏文章介绍Go语言开发。（太冗长，读者没有耐心读完，自己觉得也麻烦，呵呵）
- Go My Way #1 - web框架 Go My Way #2 - 数据库, 日志 Go My Way #3 - Configuration, Tracing, etc. gomobile  第一个主题是web框架。我觉得对这部分关注的人比较多，所以选择了它。
-但是开发web应用程序，只有web框架是不够的。保存数据需要数据库，想保存日志，想追溯处理web请求的记录。想一一解决各种问题，需要更多的选择。所以在第2章和第3章对 DB, Logging, Tracing, Vendoring, Confugration, Test等功能一一介绍。
-最后会对， gomobile 进行介绍。
-在几个大会当中有对它的介绍，但实际用Go开发移动端有诸多不便。但我们公司的服务的app中有Go package。gomobile有制约事项，但考虑好制约事项开发项目也不错。最后会介绍在移动端怎么使用Go。
-此后会用3个篇幅介绍开发web应用程序的方法。没有绝对正确的方式，Go也不提倡这种方式。我将介绍我们公司业务环境下对web应用程序的优化方式，环境不一样可能方式也不一样。在我们公司也有用其他方式开发项目。
-对所介绍的内容的讨论，建议，争论，质疑，等
-我将感谢任何形式的意见。
-我的思想是永远开放的. ^^
-ECHO
-先讲结论，开发web应用程序时用echo来开发。
-根据之前所说的内容开发了参考项目echosample(https://github.com/pangpanglabs/echosample)。有新的内容添加时会持续更新 echosample。开发新的服务时可以参考echosample。
-非常欢迎想一起开发echosample的同事。
-main 框架 - echo echo是没有明显缺点，只有必要的功能的轻量级框架。
-Go有许多web框架，但功能大同小异。大部分会提供一下的功能。
- 定义路由 Query String或者Body转换成 struct.
-  </div>
-  
-  <footer>
-    <ul class="pager">
-      <li class="next"><a href="https://pangpang-blog.github.io/liche/go_my_way1/">Read more <span aria-hidden="true">&raquo;</span></a></li>
     </ul>
   </footer>
   
